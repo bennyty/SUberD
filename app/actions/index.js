@@ -1,5 +1,9 @@
-
 import firebase from '../firebase';
+
+export const REQUEST_RIDE  = "REQUEST_RIDE"
+export const REQUEST_QUEUE = "REQUEST_QUEUE"
+export const CREATE_EVENT  = "CREATE_EVENT"
+export const REMOVE_RIDE   = "REMOVE_RIDE"
 
 export const addMessage = (msg) => ({
     type: 'ADD_MESSAGE',
