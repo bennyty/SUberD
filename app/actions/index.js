@@ -5,52 +5,49 @@ export const REQUEST_QUEUE = "REQUEST_QUEUE"
 export const CREATE_EVENT  = "CREATE_EVENT"
 export const REMOVE_RIDE   = "REMOVE_RIDE"
 
-export const addMessage = (msg) => ({
-    type: 'ADD_MESSAGE',
-    ...msg
+export const requestRide = (pickup,dropoff,numRider,comment) => ({
+        type: REQUEST_RIDE
+        pickup,
+        dropoff,
+        numRiders,
+        comment
+        sentAt: Date.now()
+        //name and phone number of rider
 });
 
-export const sendMessage = (text, user) => ({
-        type: 'SEND_MESSAGE',
-        text,
-        user
+export const createEvent = (eventName, eventID) => ({
+        type: CREATE_EVENT,
+        eventName,
+        eventID,
+        createdAt: Date.now()
+        //even password
 });
 
-export const startFetchingMessages = () => ({
-    type: 'START_FETCHING_MESSAGES'
+export const removeRider = () => ({
+        type: REMOVE_RIDE,
+        //removes the rider by that name from the queue, send event ID as well
 });
 
-export const receivedMessages = () => ({
-    type: 'RECEIVED_MESSAGES',
-    receivedAt: Date.now()
+export const requestQueue = (eventID) => ({
+        
+        var db = firebase.database();
+        var ref = db.ref("Riders");
+        red.orderByChild("eventID").equalTo(eventID).on("child_added").then(function(snapshot)
+        {
+                // The Promise was "fulfilled" (it succeeded).
+               const queue = snapshot.val(); 
+               return queue; 
+        },function(error)
+        {
+                  // The Promise was rejected.
+                  console.error(error);
+        }
 });
 
-export const fetchMessages = () => {
-    return function (dispatch) {
-        dispatch(startFetchingMessages());
-
-        firebase.database()
-                .ref('messages')
-                .on('value', (snapshot) => {
-                    // gets around Redux panicking about actions in reducers
-                    setTimeout(() => {
-                        const messages = snapshot.val() || [];
-
-                        dispatch(receiveMessages(messages))
-                    }, 0);
-                });
-    }
 }
 
-export const receiveMessages = (messages) => {
-    return function (dispatch) {
-        Object.values(messages).forEach(msg => dispatch(addMessage(msg)));
-
-        dispatch(receivedMessages());
-    }
-}
-
-export const updateMessagesHeight = (event) => {
+//get height to mainitain scroll at top/bottom
+export const updateQueueHeight = (event) => {
     const layout = event.nativeEvent.layout;
 
     return {
@@ -60,21 +57,7 @@ export const updateMessagesHeight = (event) => {
 }
 
 
-
-//
-// User actions
-//
-
-export const setUserName = (name) => ({
-    type: 'SET_USER_NAME',
-    name
-});
-
-export const setUserAvatar = (avatar) => ({
-    type: 'SET_USER_AVATAR',
-    avatar: avatar && avatar.length > 0 ? avatar : 'https://abs.twimg.com/sticky/default_profile_images/default_profile_3_400x400.png'
-});
-
+//login actions
 export const login = () => {
     return function (dispatch) {
         dispatch(startAuthorizing());
