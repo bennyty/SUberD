@@ -5,15 +5,25 @@ export const REQUEST_QUEUE = "REQUEST_QUEUE"
 export const CREATE_EVENT  = "CREATE_EVENT"
 export const REMOVE_RIDE   = "REMOVE_RIDE"
 
+export const requestRide = (pickup,dropoff,numRiders,comment, user) => ({
+       //Import Admin SDK
+       var admin = require("firebase-admin");
+       // Get a database reference to our blog
+       var db = admin.database();
+       var ref = db.ref("riders/");
+       var usersRef = ref.child("riders");
+       usersRef.set({
+        user.phoneNumber: 
+                {
+                user.name
+                pickup 
+                dropoff
+                numRiders
+                comment
+                reqeustedAt: Date.now()
+                },
+        });
 
-export const requestRide = (pickup,dropoff,numRider,comment) => ({
-        type: REQUEST_RIDE
-        pickup,
-        dropoff,
-        numRiders,
-        comment
-        sentAt: Date.now()
-        //name and phone number of rider
 });
 
 export const createEvent = (eventName, eventID) => ({
@@ -28,6 +38,7 @@ export const removeRider = () => ({
         type: REMOVE_RIDE,
         //removes the rider by that name from the queue, send event ID as well
 });
+
 
 export const requestQueue = (eventID) => ({
         
