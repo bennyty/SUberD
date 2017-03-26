@@ -7,9 +7,8 @@ export const REMOVE_RIDE   = "REMOVE_RIDE"
 
 export const requestRide = (pickup,dropoff,numRiders,comment, user) => ({
        //Import Admin SDK
-       var admin = require("firebase-admin");
        // Get a database reference to our blog
-       var db = admin.database();
+       var db = firebase.database();
        var ref = db.ref("riders/");
        var usersRef = ref.child("riders");
        usersRef.set({
