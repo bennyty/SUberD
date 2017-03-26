@@ -5,6 +5,7 @@ export const REQUEST_QUEUE = "REQUEST_QUEUE"
 export const CREATE_EVENT  = "CREATE_EVENT"
 export const REMOVE_RIDE   = "REMOVE_RIDE"
 
+
 export const requestRide = (pickup,dropoff,numRider,comment) => ({
         type: REQUEST_RIDE
         pickup,
