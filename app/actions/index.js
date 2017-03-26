@@ -1,29 +1,31 @@
-import firebase from '../firebase';
+import firebase from '../firebase.js';
 
 export const REQUEST_RIDE  = "REQUEST_RIDE"
 export const REQUEST_QUEUE = "REQUEST_QUEUE"
 export const CREATE_EVENT  = "CREATE_EVENT"
 export const REMOVE_RIDE   = "REMOVE_RIDE"
 
-export const requestRide = (pickup,dropoff,numRiders,comment, user) => ({
+export const requestRide = (pickup,dropoff,numRiders,comment, user) => {
        //Import Admin SDK
        // Get a database reference to our blog
        var db = firebase.database();
        var ref = db.ref("riders/");
        var usersRef = ref.child("riders");
        usersRef.set({
-        user.phoneNumber: 
+        person: 
                 {
-                user.name
-                pickup 
-                dropoff
-                numRiders
-                comment
+                phonenumber: user.phoneNumber,
+                name: user.name,
+                pickup: pickup, 
+                dropoff: dropoff,
+                numRiders: numRiders,
+                comment: comment,
                 reqeustedAt: Date.now()
-                },
+                }
         });
+        return 1;
 
-});
+};
 
 export const createEvent = (eventName, eventID) => ({
         type: CREATE_EVENT,
@@ -39,7 +41,7 @@ export const removeRider = () => ({
 });
 
 
-export const requestQueue = (eventID) => ({
+export const requestQueue = (eventID) => {
         
         var db = firebase.database();
         var ref = db.ref("Riders");
@@ -52,10 +54,10 @@ export const requestQueue = (eventID) => ({
         {
                   // The Promise was rejected.
                   console.error(error);
-        }
-});
+                  return 0;
+        })
+};
 
-}
 
 //get height to mainitain scroll at top/bottom
 export const updateQueueHeight = (event) => {
