@@ -1,8 +1,6 @@
 
 import { combineReducers } from 'redux';
 
-import messages from './messages';
-
 const initialState = {
     isFetching: false,
     lastFetched: null,
@@ -30,7 +28,6 @@ const meta = (state = initialState, action) => {
 }
 
 const chatroom = combineReducers({
-    messages,
     meta
 });
 
