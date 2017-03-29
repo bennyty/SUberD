@@ -1,9 +1,5 @@
 import firebase from '../firebase.js';
 
-export const REQUEST_RIDE  = "REQUEST_RIDE"
-export const REQUEST_QUEUE = "REQUEST_QUEUE"
-export const CREATE_EVENT  = "CREATE_EVENT"
-export const REMOVE_RIDE   = "REMOVE_RIDE"
 
 export const requestRide = (pickup,dropoff,numRiders,comment, user) => {
        //Import Admin SDK
@@ -24,20 +20,26 @@ export const requestRide = (pickup,dropoff,numRiders,comment, user) => {
                 }
         });
         return 1;
+// Default exports are the constants.
+// Import as: import actionNames from '../actions'
+export default { REQUEST_RIDE  : "REQUEST_RIDE",
+                 REQUEST_QUEUE : "REQUEST_QUEUE",
+                 CREATE_EVENT  : "CREATE_EVENT",
+                 REMOVE_RIDE   : "REMOVE_RIDE"}
 
 };
 
 export const createEvent = (eventName, eventID) => ({
-        type: CREATE_EVENT,
-        eventName,
-        eventID,
-        createdAt: Date.now()
-        //even password
+	type: CREATE_EVENT,
+	eventName,
+	eventID,
+	createdAt: Date.now()
+	//even password
 });
 
 export const removeRider = () => ({
-        type: REMOVE_RIDE,
-        //removes the rider by that name from the queue, send event ID as well
+	type: REMOVE_RIDE,
+	//removes the rider by that name from the queue, send event ID as well
 });
 
 
@@ -61,13 +63,12 @@ export const requestQueue = (eventID) => {
 
 //get height to mainitain scroll at top/bottom
 export const updateQueueHeight = (event) => {
-    const layout = event.nativeEvent.layout;
-
-    return {
-        type: 'UPDATE_MESSAGES_HEIGHT',
-        height: layout.height
-    }
-}
+	const layout = event.nativeEvent.layout;
+	return {
+		type: 'UPDATE_MESSAGES_HEIGHT',
+		height: layout.height
+	}
+};
 
 
 //login actions
