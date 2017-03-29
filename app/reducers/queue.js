@@ -27,8 +27,8 @@ const meta = (state = initialState, action) => {
     }
 }
 
-const chatroom = combineReducers({
+const queue = combineReducers({
     meta
 });
 
-export default chatroom;
+export default queue;
