@@ -1,24 +1,6 @@
 
+import { createAction } from 'redux-actions'
 
-export const requestRide = (pickup,dropoff,numRiders,comment, user) => {
-       //Import Admin SDK
-       // Get a database reference to our blog
-       var db = firebase.database();
-       var ref = db.ref("riders/");
-       var usersRef = ref.child("riders");
-       usersRef.set({
-        person: 
-                {
-                phonenumber: user.phoneNumber,
-                name: user.name,
-                pickup: pickup, 
-                dropoff: dropoff,
-                numRiders: numRiders,
-                comment: comment,
-                reqeustedAt: Date.now()
-                }
-        });
-        return 1;
 // Default exports are the constants.
 // Import as: import actionNames from '../actions'
 export default { REQUEST_RIDE  : "REQUEST_RIDE",
@@ -26,6 +8,7 @@ export default { REQUEST_RIDE  : "REQUEST_RIDE",
                  CREATE_EVENT  : "CREATE_EVENT",
                  REMOVE_RIDE   : "REMOVE_RIDE"}
 
+export const requestRide = (pickup,dropoff,numRiders,comment, user) => {
 };
 
 export const createEvent = (eventName, eventID) => ({
@@ -43,20 +26,6 @@ export const removeRider = () => ({
 
 
 export const requestQueue = (eventID) => {
-        
-        var db = firebase.database();
-        var ref = db.ref("Riders");
-        red.orderByChild("eventID").equalTo(eventID).on("child_added").then(function(snapshot)
-        {
-                // The Promise was "fulfilled" (it succeeded).
-               const queue = snapshot.val(); 
-               return queue; 
-        },function(error)
-        {
-                  // The Promise was rejected.
-                  console.error(error);
-                  return 0;
-        })
 };
 
 
