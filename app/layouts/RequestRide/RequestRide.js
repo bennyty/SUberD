@@ -8,6 +8,7 @@ import {
   View
 } from 'react-native';
 import styles from './styles';
+import {Actions} from 'react-native-router-flux'
 
 
 class RequestRide extends Component {
@@ -20,7 +21,7 @@ class RequestRide extends Component {
        comment: ''
     }
   }
-
+  //() => alert('from: ' + this.state.fromAddress + '\nto: ' + this.state.toAddress)}>
   render() {
     return (
       <View style={styles.container}>
@@ -50,7 +51,7 @@ class RequestRide extends Component {
         </View>
         <TouchableHighlight 
         style = {styles.submit}
-        onPress = { () => alert('from: ' + this.state.fromAddress + '\nto: ' + this.state.toAddress)}>
+        onPress = {Actions.queue}>
           <Text> Submit </Text>
         </TouchableHighlight>
       </View>
