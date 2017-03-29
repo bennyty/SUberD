@@ -1,4 +1,3 @@
-import firebase from '../firebase.js';
 
 
 export const requestRide = (pickup,dropoff,numRiders,comment, user) => {
