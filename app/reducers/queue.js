@@ -1,6 +1,7 @@
 
 import { combineReducers } from 'redux';
 import actionNames from '../actions';
+var stringify = require('json-stable-stringify')
 
 const initialState = {
     isFetching: false,
@@ -19,7 +20,7 @@ const queue = (state = initialState, action) => {
                 isFetching: false,
 				lastFetched: action.payload.receivedAt,
 				rides: action.payload.rides
-            });
+            })
         default:
             return state
     }

@@ -1,6 +1,7 @@
 import { take, takeEvery, takeLast, call, put } from 'redux-saga/effects'
 import database from '../api';
 import actionNames from '../actions'
+import * as actionFactory from '../actions'
 import { create, get, getAll, push, remove, update, sync } from 'firebase-saga'
 
 
@@ -45,13 +46,15 @@ import { create, get, getAll, push, remove, update, sync } from 'firebase-saga'
 // 	}
 // }
 
-function * fetchQueue( action ) { //
+function * fetchQueue( action ) {
 	try {
 		const eventID = action.payload.eventID
-		const rides = yield call( getAll , ("events" + eventID + "/rides"))
-		yield put(actionsNames.RECEIVE_QUEUE(rides))
+		const fakeRides = [{id: 1, source: "10th street"}, {id: 2, source: "Potato road"}]
+		// const rides = yield call( getAll , ("events" + eventID + "/rides"))
+		const rides = fakeRides
+		yield put(actionFactory.receiveQueue(rides))
 	} catch (error) {
-		yield put(actionsNames.RECEIVE_QUEUE(error))
+		yield put(actionFactory.receiveQueue(error))
 	}
 }
 
@@ -70,7 +73,11 @@ function * watchRequestQueue() {
 }
 
 function * watchRequestRide() {
-	yield takeEvery(actionNames.REQUEST_RIDE, requestRide)
+	try {
+		yield takeEvery(actionNames.REQUEST_RIDE, requestRide)
+	} catch (error) {
+		alert(error)
+	}
 }
 
 // function* loginFlow() {
@@ -86,7 +93,11 @@ function * watchRequestRide() {
 // }
 
 export default function* root() {
-	yield watchRequestQueue()
-		// fork(watchRequestRide)
+	// yield [
+	// 	fork(watchRequestQueue)
+	// 	// fork(watchRequestRide)
 	// ]
+	yield [
+		takeEvery(actionNames.REQUEST_QUEUE, fetchQueue)
+	]
 }

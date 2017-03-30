@@ -5,7 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 import rootReducer from '../../reducers'
 import Reactotron from 'reactotron-react-native'
 
-const sagaMonitor = Reactotron.createSagaMonitor()
+const sagaMonitor = Reactotron.createSagaMonitor
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
 // const sagaMiddleware = createSagaMiddleware()
 
@@ -13,10 +13,11 @@ const configureStore = preloadedState => {
   const store = Reactotron.createStore(
     rootReducer,
     preloadedState,
-    compose(
-      applyMiddleware(sagaMiddleware, createLogger())
-    )
-  )
+	applyMiddleware(sagaMiddleware)
+    // compose(
+      // applyMiddleware(sagaMiddleware, createLogger())
+    // )
+	)
 	sagaMiddleware.run(rootSaga)
 
   return store

@@ -11,6 +11,7 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
 					  }
 export default actionNames;
 
+export const receiveQueue = createAction(actionNames.RECEIVE_QUEUE)
 
 export const requestRide = (pickup, dropoff, numRiders, comment, user) => {
 	return createAction(actionNames.REQUEST_RIDE,

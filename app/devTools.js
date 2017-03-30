@@ -4,6 +4,6 @@ import sagaPlugin from 'reactotron-redux-saga'
 
 Reactotron
   .configure() // we can use plugins here -- more on this later
-  .use(reactotronRedux())
   .use(sagaPlugin())
+  .use(reactotronRedux())
   .connect() // let's connect!
