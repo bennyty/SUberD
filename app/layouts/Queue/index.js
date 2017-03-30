@@ -1,3 +1,3 @@
-import Queue from './Queue';
+import VisibleQueue from './VisibleQueue';
 
-export default Queue;
+export default VisibleQueue;

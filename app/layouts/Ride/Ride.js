@@ -42,22 +42,22 @@ class Ride extends Component {
       <View style={styles.container}>
         <View style={{height:100}}></View>
         <View style={styles.info}>
-          <Text>Name: {this.props.all.name}</Text>
+          <Text>Name: {this.props.all.user.first_name} {this.props.all.user.last_name}</Text>
           <View style={{flexDirection: 'row'}}>
             <Text>Number: </Text>
-            <ExternalLink textLink={this.props.all.phone}/>
+            <ExternalLink textLink={this.props.all.user.phone_number}/>
           </View>
           <View style={{flexDirection: 'row'}}>
             <Text>From: </Text>
-            <ExternalLink textLink="1501 Sage Ave."/>
+            <ExternalLink textLink={this.props.all.pickup}/>
           </View>
           <View style={{flexDirection: 'row'}}>
             <Text>To: </Text>
-            <ExternalLink textLink="LXA"/>
+            <ExternalLink textLink={this.props.all.dropoff}/>
           </View>
-          <Text>Passengers: {this.props.all.numPassengers}</Text>
+          <Text>Passengers: {this.props.all.num_passengers}</Text>
           <Text>Queue Spot: {Number(this.props.all.index)+1}</Text>
-          <Text>DriveTime: </Text>
+          <Text>Drive time: {(Number(this.props.all.index)+1)*10} minutes</Text>
           <Text>Comment: {this.props.all.comment}</Text>
         </View>
         <View style={styles.buttons}>
