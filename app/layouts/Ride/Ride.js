@@ -10,7 +10,6 @@ import {
 import styles from './styles';
 
 class ExternalLink extends Component {
-  
   handleClick = () => {
     Linking.canOpenURL('tel:6312523291').then(supported => {
       if (supported) {

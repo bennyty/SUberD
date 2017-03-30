@@ -1,9 +1,6 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { TextInput } from '@shoutem/ui';
-
 
 class Input extends Component {
     state = {

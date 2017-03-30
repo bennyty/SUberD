@@ -10,7 +10,6 @@ import {
 import styles from './styles';
 import {Actions} from 'react-native-router-flux'
 
-
 class RideElement extends Component{
   render(){
     const goToRide = () => Actions.ride({all: this.props});

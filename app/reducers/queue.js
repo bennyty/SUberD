@@ -1,4 +1,3 @@
-
 import { combineReducers } from 'redux';
 import actionNames from '../actions';
 

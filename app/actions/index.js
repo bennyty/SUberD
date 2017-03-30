@@ -1,4 +1,3 @@
-
 import { createAction } from 'redux-actions'
 
 // Default exports are the constants.
@@ -9,8 +8,8 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
 					  REMOVE_RIDE: "REMOVE_RIDE",
 					  RECEIVE_QUEUE: "RECEIVE_QUEUE"
 					  }
-export default actionNames;
 
+export default actionNames;
 
 export const requestRide = (pickup, dropoff, numRiders, comment, user) => {
 	return createAction(actionNames.REQUEST_RIDE,
@@ -30,7 +29,6 @@ export const removeRider = () => ({
 	//removes the rider by that name from the queue, send event ID as well
 });
 
-
 export const requestQueue = (eventID) => ({
 	type: actionNames.REQUEST_QUEUE,
 	payload: { eventID: eventID }
@@ -46,12 +44,10 @@ export const updateQueueHeight = (event) => {
 	}
 };
 
-
 //login actions
 export const login = () => {
     return function (dispatch) {
         dispatch(startAuthorizing());
-
         firebase.auth()
                 .signInAnonymously()
                 .then(() => {
