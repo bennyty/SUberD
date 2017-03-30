@@ -1,3 +1,3 @@
-import RequestRide from './RequestRide';
+import VisibleRequestRide from './VisibleRequestRide';
 
-export default RequestRide;
+export default VisibleRequestRide;

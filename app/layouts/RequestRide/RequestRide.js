@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   AppRegistry,
   TextInput,
@@ -53,12 +53,16 @@ class RequestRide extends Component {
         </View>
         <TouchableHighlight 
         style = {styles.submit}
-        onPress = {Actions.queue}>
+        onPress = {() => this.props.onSubmitClick(this.state.fromAddress, this.state.toAddress)}>
           <Text> Submit </Text>
         </TouchableHighlight>
       </View>
     );
   }
+}
+
+RequestRide.propTypes = {
+  onSubmitClick: PropTypes.func.isRequired
 }
 
 export default RequestRide;
