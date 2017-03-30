@@ -42,10 +42,10 @@ class Ride extends Component {
       <View style={styles.container}>
         <View style={{height:100}}></View>
         <View style={styles.info}>
-          <Text>Name: </Text>
+          <Text>Name: {this.props.all.name}</Text>
           <View style={{flexDirection: 'row'}}>
             <Text>Number: </Text>
-            <ExternalLink textLink="6312523291"/>
+            <ExternalLink textLink={this.props.all.phone}/>
           </View>
           <View style={{flexDirection: 'row'}}>
             <Text>From: </Text>
@@ -55,10 +55,10 @@ class Ride extends Component {
             <Text>To: </Text>
             <ExternalLink textLink="LXA"/>
           </View>
-          <Text>Passengers: </Text>
-          <Text>Queue Spot: {this.props.index+1}</Text>
+          <Text>Passengers: {this.props.all.numPassengers}</Text>
+          <Text>Queue Spot: {Number(this.props.all.index)+1}</Text>
           <Text>DriveTime: </Text>
-          <Text>Comment: </Text>
+          <Text>Comment: {this.props.all.comment}</Text>
         </View>
         <View style={styles.buttons}>
           <TouchableHighlight 

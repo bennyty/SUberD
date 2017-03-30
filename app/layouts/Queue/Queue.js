@@ -13,7 +13,7 @@ import {Actions} from 'react-native-router-flux'
 
 class RideElement extends Component{
   render(){
-    const goToRide = () => Actions.ride({index: Number(this.props.index)});
+    const goToRide = () => Actions.ride({all: this.props});
     return(
       <TouchableHighlight 
       onPress = {goToRide}>
@@ -38,7 +38,7 @@ class Queue extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
-        {"place":1, "from":"1501 Sage Ave", "to":"LXA", "name":"Jim Thorpe", "numPassengers":5}, {"place":2, "from":"Pikes", "to":"Ben's Apartment", "name":"Ben Espey", "numPassengers":1}
+        {"from":"1501 Sage Ave", "to":"LXA", "name":"Jim Thorpe", "phone":"6312523291", "numPassengers":5, "comment":"Thanks!"}, {"from":"Pikes", "to":"Ben's Apartment", "name":"Ben Espey", "phone":"1234566543", "numPassengers":1, "comment":""}
       ])
     }
   }
