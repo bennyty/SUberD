@@ -3,11 +3,14 @@ import { createLogger } from 'redux-logger'
 import rootSaga from '../../sagas'
 import createSagaMiddleware from 'redux-saga'
 import rootReducer from '../../reducers'
+import Reactotron from 'reactotron-react-native'
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMonitor = Reactotron.createSagaMonitor()
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
+// const sagaMiddleware = createSagaMiddleware()
 
 const configureStore = preloadedState => {
-  const store = createStore(
+  const store = Reactotron.createStore(
     rootReducer,
     preloadedState,
     compose(

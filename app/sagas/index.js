@@ -46,7 +46,6 @@ import { create, get, getAll, push, remove, update, sync } from 'firebase-saga'
 // }
 
 function * fetchQueue( action ) { //
-	alert("No")
 	try {
 		const eventID = action.payload.eventID
 		const rides = yield call( getAll , ("events" + eventID + "/rides"))
