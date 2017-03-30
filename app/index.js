@@ -1,3 +1,4 @@
+import './devTools'
 import React, {Component} from 'react'
 import {Router, Scene} from 'react-native-router-flux'
 import {Provider, connect} from 'react-redux'
@@ -6,6 +7,7 @@ import RequestRide from './layouts/RequestRide'
 
 const RouterWithRedux = connect()(Router)
 const store = configureStore()
+
 
 export default class App extends Component {
   render () {

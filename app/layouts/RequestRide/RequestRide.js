@@ -9,6 +9,9 @@ import {
 } from 'react-native';
 import styles from './styles';
 
+import { dispatch } from 'redux'
+import { requestRide } from '../../actions'
+
 
 class RequestRide extends Component {
   constructor() {
@@ -50,7 +53,7 @@ class RequestRide extends Component {
         </View>
         <TouchableHighlight 
         style = {styles.submit}
-        onPress = { () => alert('from: ' + this.state.fromAddress + '\nto: ' + this.state.toAddress)}>
+		onPress = { () => { alert() } }>
           <Text> Submit </Text>
         </TouchableHighlight>
       </View>

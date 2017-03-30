@@ -1,10 +1,11 @@
 
 import { combineReducers } from 'redux';
+import actionNames from '../actions';
 
 const initialState = {
     isFetching: false,
     lastFetched: null,
-    height: 0
+	rides: []
 }
 
 const meta = (state = initialState, action) => {

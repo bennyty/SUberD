@@ -3,12 +3,17 @@ import { createAction } from 'redux-actions'
 
 // Default exports are the constants.
 // Import as: import actionNames from '../actions'
-export default { REQUEST_RIDE  : "REQUEST_RIDE",
-                 REQUEST_QUEUE : "REQUEST_QUEUE",
-                 CREATE_EVENT  : "CREATE_EVENT",
-                 REMOVE_RIDE   : "REMOVE_RIDE"}
+export default actionNames;
+const actionNames = { REQUEST_RIDE  : "REQUEST_RIDE",
+                      REQUEST_QUEUE : "REQUEST_QUEUE",
+                      CREATE_EVENT  : "CREATE_EVENT",
+					  REMOVE_RIDE   : "REMOVE_RIDE",
+					  RECEIVE_QUEUE : "RECEIVE_QUEUE"
+					  }
 
-export const requestRide = (pickup,dropoff,numRiders,comment, user) => {
+export const requestRide = (pickup, dropoff, numRiders, comment, user) => {
+	return createAction(actionNames.REQUEST_RIDE,
+						(pickup, dropoff, numRiders, comment, user) => ({pickup, dropoff, numRiders, comment, user}))
 };
 
 export const createEvent = (eventName, eventID) => ({
