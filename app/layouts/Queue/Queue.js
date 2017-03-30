@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  NavigatorIOS,
   ListView,
   TextInput,
   TouchableHighlight,
@@ -9,21 +8,26 @@ import {
   View
 } from 'react-native';
 import styles from './styles';
+import {Actions} from 'react-native-router-flux'
 
 
 class RideElement extends Component{
   render(){
-   return(
-      <View style={styles.queueElement}>
-        <View style={styles.elementRow}>
-          <Text>{this.props.from}</Text>
-          <Text>{this.props.name}</Text>
+    const goToRide = () => Actions.ride({index: Number(this.props.index)});
+    return(
+      <TouchableHighlight 
+      onPress = {goToRide}>
+        <View style={styles.queueElement}>
+          <View style={styles.elementRow}>
+            <Text>{this.props.from}</Text>
+            <Text>{this.props.name}</Text>
+          </View>
+          <View style={styles.elementRow}>
+            <Text>{this.props.to}</Text>
+            <Text>{this.props.numPassengers}</Text>
+          </View>
         </View>
-        <View style={styles.elementRow}>
-          <Text>{this.props.to}</Text>
-          <Text>{this.props.numPassengers}</Text>
-        </View>
-      </View>
+      </TouchableHighlight>
     );
   }
 }
@@ -34,7 +38,7 @@ class Queue extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
-        {"from":"1501 Sage Ave", "to":"LXA", "name":"Jim Thorpe", "numPassengers":5}, {"from":"Pikes", "to":"Ben's Apartment", "name":"Ben Espey", "numPassengers":1}
+        {"place":1, "from":"1501 Sage Ave", "to":"LXA", "name":"Jim Thorpe", "numPassengers":5}, {"place":2, "from":"Pikes", "to":"Ben's Apartment", "name":"Ben Espey", "numPassengers":1}
       ])
     }
   }
@@ -50,7 +54,7 @@ class Queue extends Component {
         <View style={styles.queueTable}>
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <RideElement {...rowData}/>} 
+            renderRow={(rowData, sectionId, rowId) => <RideElement secId={sectionId} index={rowId} {...rowData} />} 
             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />} />
         </View>
       </View>

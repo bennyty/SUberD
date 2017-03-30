@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  NavigatorIOS,
   TextInput,
   TouchableHighlight,
   Text,
@@ -21,7 +20,7 @@ class RequestRide extends Component {
        comment: ''
     }
   }
-  //() => alert('from: ' + this.state.fromAddress + '\nto: ' + this.state.toAddress)}>
+
   render() {
     return (
       <View style={styles.container}>
