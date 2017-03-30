@@ -3,13 +3,14 @@ import { createAction } from 'redux-actions'
 
 // Default exports are the constants.
 // Import as: import actionNames from '../actions'
-export default actionNames;
-const actionNames = { REQUEST_RIDE  : "REQUEST_RIDE",
-                      REQUEST_QUEUE : "REQUEST_QUEUE",
-                      CREATE_EVENT  : "CREATE_EVENT",
-					  REMOVE_RIDE   : "REMOVE_RIDE",
-					  RECEIVE_QUEUE : "RECEIVE_QUEUE"
+const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
+                      REQUEST_QUEUE: "REQUEST_QUEUE",
+                      CREATE_EVENT: "CREATE_EVENT",
+					  REMOVE_RIDE: "REMOVE_RIDE",
+					  RECEIVE_QUEUE: "RECEIVE_QUEUE"
 					  }
+export default actionNames;
+
 
 export const requestRide = (pickup, dropoff, numRiders, comment, user) => {
 	return createAction(actionNames.REQUEST_RIDE,
@@ -30,8 +31,10 @@ export const removeRider = () => ({
 });
 
 
-export const requestQueue = (eventID) => {
-};
+export const requestQueue = (eventID) => ({
+	type: actionNames.REQUEST_QUEUE,
+	payload: { eventID: eventID }
+});
 
 
 //get height to mainitain scroll at top/bottom
