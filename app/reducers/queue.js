@@ -10,14 +10,15 @@ const initialState = {
 
 const meta = (state = initialState, action) => {
     switch (action.type) {
-        case 'START_FETCHING_MESSAGES':
+        case actionNames.REQUEST_RIDE:
             return Object.assign({}, state, {
                 isFetching: true
             });
-        case 'RECEIVED_MESSAGES':
+        case actionNames.RECEIVE_QUEUE:
             return Object.assign({}, state, {
                 isFetching: false,
-                lastFetched: action.receivedAt
+				lastFetched: action.payload.receivedAt,
+				rides: action.payload.rides
             });
         case 'UPDATE_MESSAGES_HEIGHT':
             return Object.assign({}, state, {

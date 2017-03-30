@@ -45,8 +45,10 @@ import { create, get, getAll, push, remove, update, sync } from 'firebase-saga'
 // 	}
 // }
 
-function * fetchQueue( eventID ) { //
+function * fetchQueue( action ) { //
+	alert("No")
 	try {
+		const eventID = action.payload.eventID
 		const rides = yield call( getAll , ("events" + eventID + "/rides"))
 		yield put(actionsNames.RECEIVE_QUEUE(rides))
 	} catch (error) {
@@ -55,13 +57,17 @@ function * fetchQueue( eventID ) { //
 }
 
 function * requestRide() {
-	// yield call( push,  )
+	yield call( push )
 }
 
 // ************************Watchers**************************
 
 function * watchRequestQueue() {
-	yield takeEvery(actionNames.REQUEST_QUEUE, fetchQueue)
+	try {
+		yield takeEvery(actionNames.REQUEST_QUEUE, fetchQueue)
+	} catch(error) {
+		console.error(error + actionNames)
+	}
 }
 
 function * watchRequestRide() {
@@ -81,8 +87,7 @@ function * watchRequestRide() {
 // }
 
 export default function* root() {
-	yield [
-		fork(watchRequestQueue)
+	yield watchRequestQueue()
 		// fork(watchRequestRide)
-	]
+	// ]
 }
