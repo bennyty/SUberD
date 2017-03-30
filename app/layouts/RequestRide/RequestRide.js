@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
-  NavigatorIOS,
   TextInput,
   TouchableHighlight,
   Text,
   View
 } from 'react-native';
 import styles from './styles';
+import {Actions} from 'react-native-router-flux'
 
 import { dispatch } from 'redux'
 import { requestRide } from '../../actions'
@@ -53,7 +53,7 @@ class RequestRide extends Component {
         </View>
         <TouchableHighlight 
         style = {styles.submit}
-		onPress = { () => { alert() } }>
+        onPress = {Actions.queue}>
           <Text> Submit </Text>
         </TouchableHighlight>
       </View>
