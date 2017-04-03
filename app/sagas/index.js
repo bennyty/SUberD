@@ -4,7 +4,6 @@ import actionNames from '../actions'
 import * as actionFactory from '../actions'
 import { create, get, getAll, push, remove, update, sync } from 'firebase-saga'
 
-
 // function* a() {
 	// yield put(requestRide)
 	// //Import Admin SDK
@@ -63,7 +62,6 @@ function * requestRide() {
 }
 
 // ************************Watchers**************************
-
 function * watchRequestQueue() {
 	try {
 		yield takeEvery(actionNames.REQUEST_QUEUE, fetchQueue)

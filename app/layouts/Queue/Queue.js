@@ -15,7 +15,7 @@ class RideElement extends Component{
   render(){
     const goToRide = () => Actions.ride({all: this.props});
     return(
-      <TouchableHighlight 
+      <TouchableHighlight
       onPress = {goToRide}>
         <View style={styles.queueElement}>
           <View style={styles.elementRow}>
@@ -53,7 +53,7 @@ class Queue extends Component {
         <View style={styles.queueTable}>
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={(rowData, sectionId, rowId) => <RideElement secId={sectionId} index={rowId} {...rowData} />} 
+            renderRow={(rowData, sectionId, rowId) => <RideElement secId={sectionId} index={rowId} {...rowData} />}
             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />} />
         </View>
       </View>
