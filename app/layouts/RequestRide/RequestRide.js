@@ -12,10 +12,10 @@ import {Actions} from 'react-native-router-flux'
 import { dispatch } from 'redux'
 import { requestRide } from '../../actions'
 
-
 class RequestRide extends Component {
   constructor() {
     super()
+    //Sets the state of the component
     this.state = {
        fromAddress: '',
        toAddress: '',
@@ -32,6 +32,7 @@ class RequestRide extends Component {
           <Text style={styles.welcome}> Org. Name </Text>
         </View>
         <View style={styles.inputs}>
+          {/*Input boxes for each requested field*/}
           <TextInput
             style = {styles.inp}
             placeholder = 'from'
@@ -51,6 +52,8 @@ class RequestRide extends Component {
             placeholder = 'Comment for Driver (Optional)'
             onChangeText={(text) => this.setState({comment: text})}/>
         </View>
+        {/*Button for submitting the info*/}
+        {/*onPress() calls the submitClick() function in the VisibleRideRequest class*/}
         <TouchableHighlight 
         style = {styles.submit}
         onPress = {() => this.props.onSubmitClick(this.state.fromAddress, this.state.toAddress)}>

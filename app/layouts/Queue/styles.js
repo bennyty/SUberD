@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+//Stylesheet which gives the visual properties 
+//and layout formats of each component
 export default StyleSheet.create({
   container: {
     flex: 1,

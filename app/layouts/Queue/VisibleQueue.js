@@ -13,6 +13,8 @@ const mapStateToProps = (state) => {
   }
 }
 
+//Maps the data input method to the Queue component
+//Calls the Queue component
 const VisibleQueue = connect(
   mapStateToProps
 )(Queue)
