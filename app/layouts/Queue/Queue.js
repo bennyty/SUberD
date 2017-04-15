@@ -21,7 +21,7 @@ class RideElement extends Component{
     // Returns a clickable RideElement
     //When clicked it calls the function goToRide()
     return(
-      <TouchableHighlight 
+      <TouchableHighlight
       onPress = {goToRide}>
         <View style={styles.queueElement}>
           {/*First row of data*/}
@@ -67,7 +67,7 @@ class Queue extends Component {
           {/*Lists the information in rows, where each entry is displayed in its own RideElement*/}
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={(rowData, sectionId, rowId) => <RideElement secId={sectionId} index={rowId} {...rowData} />} 
+            renderRow={(rowData, sectionId, rowId) => <RideElement secId={sectionId} index={rowId} {...rowData} />}
             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />} />
         </View>
       </View>

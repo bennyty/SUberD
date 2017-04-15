@@ -4,7 +4,6 @@ import actionNames from '../actions'
 import * as actionFactory from '../actions'
 import { create, get, getAll, push, remove, update, sync } from 'firebase-saga'
 
-
 // function* a() {
 	// yield put(requestRide)
 	// //Import Admin SDK
@@ -49,10 +48,10 @@ import { create, get, getAll, push, remove, update, sync } from 'firebase-saga'
 function * fetchQueue( action ) {
 	try {
 		const eventID = action.payload.eventID
-		const fakeRides = [{id: 1, source: "10th street"}, {id: 2, source: "Potato road"}]
+		const fakeRides = [{"comment":"NA", "dropoff":"HOME", "num_passengers":"1", "pickup":"RSE", "user":{"first_name":"TJ","last_name":"Passaro"}}, {"comment":"NA", "dropoff":"HOME", "num_passengers":"1", "pickup":"2347 17th street", "user":{"first_name":"Ben","last_name":"Espey"}}]
 		// const rides = yield call( getAll , ("events" + eventID + "/rides"))
 		const rides = fakeRides
-		yield put(actionFactory.receiveQueue(rides))
+		yield put(actionFactory.receiveQueue({rides: rides}))
 	} catch (error) {
 		yield put(actionFactory.receiveQueue(error))
 	}
@@ -63,7 +62,6 @@ function * requestRide() {
 }
 
 // ************************Watchers**************************
-
 function * watchRequestQueue() {
 	try {
 		yield takeEvery(actionNames.REQUEST_QUEUE, fetchQueue)

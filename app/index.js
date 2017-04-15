@@ -10,7 +10,6 @@ import Ride from './layouts/Ride'
 const RouterWithRedux = connect()(Router)
 const store = configureStore()
 
-
 export default class App extends Component {
   render () {
     return (
