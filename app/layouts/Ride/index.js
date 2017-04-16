@@ -1,3 +1,3 @@
-import Ride from './Ride';
+import VisibleRide from './VisibleRide';
 
-export default Ride;
+export default VisibleRide;

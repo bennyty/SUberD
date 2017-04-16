@@ -71,11 +71,13 @@ class Ride extends Component {
         <View style={styles.buttons}>
           {/*Button to choose to pick up ride*/}
           <TouchableHighlight 
+            onPress = {() => this.props.onSubmitClick()}
             style = {styles.pickup}>
             <Text>Pick up</Text>
           </TouchableHighlight>
           {/*Button to choose to deny/cancel the ride*/}
           <TouchableHighlight 
+            onPress = {() => this.props.onCancelClick()}
             style = {styles.deny}>
             <Text>Deny :(</Text>
           </TouchableHighlight>
