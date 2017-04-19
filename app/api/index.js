@@ -9,4 +9,12 @@ export function push(path, item) {
     return newItemRef.set(item);
 }
 
+
+export function getAll(path){
+  var ref = database.ref(path);
+  return new Promise( (resolve, reject) => {
+    ref.once("value", resolve , reject);
+  });
+}
+
 export default firebase

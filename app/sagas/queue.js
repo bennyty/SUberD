@@ -6,7 +6,7 @@ import * as firebase from '../api';
 function * requestRide(action) {
 	try {
     var { eventID } = action.payload
-    yield call( firebase.insert, "events/" +eventID + "/rides",  action)
+    yield call( firebase.push, "events/" + eventID + "/rides",  action)
 	} catch(e) {
 		alert(e)
 	}
@@ -14,15 +14,15 @@ function * requestRide(action) {
 
 function * fetchQueue( action ) {
 	try {
-		const eventID = action.payload.eventID
+    var { eventID } = action.payload
 		// const fakeRides = [{"comment":"NA", "dropoff":"HOME", "num_passengers":"1", "pickup":"RSE", "user":{"first_name":"TJ","last_name":"Passaro"}}, {"comment":"NA", "dropoff":"HOME", "num_passengers":"1", "pickup":"2347 17th street", "user":{"first_name":"Ben","last_name":"Espey"}}]
 		// const rides = yield call( getAll , ("events" + eventID + "/rides"))
-		alert("before" + eventID)
-		const rides = yield call( getAll , "/" )
-		alert("after" + eventID)
-		// const rides = fakeRides
+		var snapshot = yield call( firebase.getAll, "events/" + eventID + "/rides")
+    var rides = snapshot.val();
+
 		yield put(actionFactory.receiveQueue({rides: rides}))
 	} catch (error) {
+      alert(error)
 		yield put(actionFactory.receiveQueue(error))
 	}
 }
