@@ -49,26 +49,35 @@ class Verification extends Component {
     //Sets the state of the component
     this.state = {
         accessCode: '',
-        warning: false
+        warning: false,
+        attempts: 0
     }
-    Reactotron.log("value: " + this.state.warning);
   }
 
   render() {
     //Function definition
     const onButtonClick = () => {
-      if(this.state.accessCode == "AABB")
+      this.state.attempts += 1;
+      if(this.state.attempts <= 10 && this.state.accessCode == "AABB")
         this.props.onSubmitClick(this.state.accessCode);
       else
         this.state.warning = true;
     }
 
     function WarningMessage(props) {
-      if (props.displayMessage) {
+      if (props.attempts >= 10){
+        return(
+          <Text>
+            You are out of attempts.
+            Please contact support.shotgunrpi@gmail.com for assistance.
+          </Text>);
+      }
+      else if (props.displayMessage) {
         return (
           <Text>
             Incorrect access code. 
             Make sure capitalization is correct.
+            You have {10-props.attempts} left.
           </Text>);
       }
       else
@@ -91,7 +100,7 @@ class Verification extends Component {
             placeholder = 'Enter access code here'
             onChangeText={(text) => this.setState({accessCode: text})}/>
         </View>
-        <WarningMessage displayMessage={this.state.warning}/>
+        <WarningMessage displayMessage={this.state.warning} attempts={this.state.attempts}/>
         {/*Button for submitting the info*/}
         {/*onPress() calls the submitClick() function in the VisibleRideRequest class*/}
         <TouchableHighlight 
