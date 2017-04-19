@@ -2,11 +2,11 @@ import { fork, take, takeEvery, takeLast, call, put } from 'redux-saga/effects'
 import actionNames from '../actions'
 import * as actionFactory from '../actions'
 import * as firebase from '../api';
-import { create, get, getAll, push, remove, update, sync } from 'firebase-saga'
 
 function * requestRide(action) {
 	try {
-		yield call( firebase.insert, "potato",  action)
+    var { eventID } = action.payload
+    yield call( firebase.insert, "events/" +eventID + "/rides",  action)
 	} catch(e) {
 		alert(e)
 	}

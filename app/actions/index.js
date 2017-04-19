@@ -16,9 +16,9 @@ export const requestSignIn = createAction(actionNames.REQUEST_SIGN_IN)
 export const receiveSignIn = createAction(actionNames.RECEIVE_SIGN_IN)
 export const receiveQueue = createAction(actionNames.RECEIVE_QUEUE)
 
-export const requestRide = (pickup, dropoff, numRiders, comment, user) => {
+export const requestRide = (eventID, phoneNumber, name, pickup, dropoff, numRiders, comment) => {
 	return createAction(actionNames.REQUEST_RIDE,
-						(pickup, dropoff, numRiders, comment, user) => ({pickup, dropoff, numRiders, comment, user}))
+						(eventID, phoneNumber, name, pickup, dropoff, numRiders, comment) => ({eventID, phoneNumber, name, pickup, dropoff, numRiders, comment}))
 };
 
 export const createEvent = (eventName, eventID) => ({
