@@ -3,7 +3,6 @@ import Queue from './Queue'
 import Reactotron from 'reactotron-react-native'
 
 const mapStateToProps = (state) => {
-	Reactotron.log({string:state})
   return {
     rides: state.queue.rides
   }

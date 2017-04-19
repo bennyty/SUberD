@@ -17,9 +17,9 @@ class RequestRide extends Component {
     super()
     //Sets the state of the component
     this.state = {
-       fromAddress: '',
-       toAddress: '',
-       numberPassengers: '',
+       pickup: '',
+       dropoff: '',
+       numRiders: '',
        comment: ''
     }
   }
@@ -36,15 +36,15 @@ class RequestRide extends Component {
           <TextInput
             style = {styles.inp}
             placeholder = 'from'
-            onChangeText={(text) => this.setState({fromAddress: text})}/>
+            onChangeText={(text) => this.setState({pickup: text})}/>
           <TextInput
             style = {styles.inp}
             placeholder = 'To'
-            onChangeText={(text) => this.setState({toAddress: text})}/>
+            onChangeText={(text) => this.setState({dropoff: text})}/>
           <TextInput
             style = {styles.inp}
             placeholder = '# of People'
-            onChangeText={(text) => this.setState({numberPassengers: text})}/>
+            onChangeText={(text) => this.setState({numRiders: text})}/>
           <TextInput
             style = {styles.inp}
             multiline = {true}
@@ -56,7 +56,7 @@ class RequestRide extends Component {
         {/*onPress() calls the submitClick() function in the VisibleRideRequest class*/}
         <TouchableHighlight 
         style = {styles.submit}
-        onPress = {() => this.props.onSubmitClick(this.state.fromAddress, this.state.toAddress)}>
+        onPress = {() => Actions.rideConfirmation({eventID: this.props.eventID, phoneNumber: this.props.phoneNumber, name: this.props.name, pickup: this.state.pickup, dropoff: this.state.dropoff, numRiders: this.state.numRiders, comment: this.state.comment})}>
           <Text> Submit </Text>
         </TouchableHighlight>
       </View>
@@ -65,7 +65,9 @@ class RequestRide extends Component {
 }
 
 RequestRide.propTypes = {
-  onSubmitClick: PropTypes.func.isRequired
+  eventID: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string.isRequired
 }
 
 export default RequestRide;
