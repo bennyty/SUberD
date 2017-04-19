@@ -77,7 +77,7 @@ class Ride extends Component {
           </TouchableHighlight>
           {/*Button to choose to deny/cancel the ride*/}
           <TouchableHighlight 
-            onPress = {() => this.props.onCancelClick()}
+            onPress = {() => this.props.onCancelClick(this.props.all.key)}
             style = {styles.deny}>
             <Text>Deny :(</Text>
           </TouchableHighlight>

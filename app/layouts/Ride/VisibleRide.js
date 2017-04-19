@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch) => {
       	//dispatch(toggleTodo(pickup, dropoff, num_passengers, comment))
     },
     //Is called by the Ride class on the 'cancel' button press
-    onCancelClick: () => {
+    onCancelClick: (rideID) => {
     	alert("Cancel");
       	//dispatch(toggleTodo(pickup, dropoff, num_passengers, comment))
     }
