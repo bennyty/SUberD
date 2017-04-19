@@ -6,10 +6,14 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
                       REQUEST_QUEUE: "REQUEST_QUEUE",
                       CREATE_EVENT: "CREATE_EVENT",
 					  REMOVE_RIDE: "REMOVE_RIDE",
+					  REQUEST_SIGN_IN: "REQUEST_SIGN_IN",
+					  RECEIVE_SIGN_IN: "RECEIVE_SIGN_IN",
 					  RECEIVE_QUEUE: "RECEIVE_QUEUE"
 					  }
 export default actionNames;
 
+export const requestSignIn = createAction(actionNames.REQUEST_SIGN_IN)
+export const receiveSignIn = createAction(actionNames.RECEIVE_SIGN_IN)
 export const receiveQueue = createAction(actionNames.RECEIVE_QUEUE)
 
 export const requestRide = (pickup, dropoff, numRiders, comment, user) => {
