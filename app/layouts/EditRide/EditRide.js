@@ -92,8 +92,6 @@ class EditRide extends Component {
 
 EditRide.propTypes = {
   eventID: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  phoneNumber: PropTypes.string.isRequired
 }
 
 export default EditRide;

@@ -39,8 +39,6 @@ class RequestRide extends Component {
 RequestRide.propTypes = {
   onConfirmClick: PropTypes.func.isRequired,
   eventID: PropTypes.string.isRequired,
-  phoneNumber: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   pickup: PropTypes.string.isRequired,
   dropoff: PropTypes.string.isRequired,
   numRiders: PropTypes.string.isRequired,

@@ -7,7 +7,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
   	//Is called by the RequestRide class on the 'submit' button press
     onConfirmClick: (eventID, phoneNumber, name, pickup, dropoff, numRiders, comment) => {
-    	alert("Editted Ride Request");
       //dispatch(requestRide({eventId, phoneNumber, name, pickup, dropoff, numRiders, comment}));
       Actions.wait({eventID:eventID, phoneNumber: phoneNumber, name: name, pickup: pickup, dropoff: dropoff, numRiders: numRiders, comment: comment});
     }

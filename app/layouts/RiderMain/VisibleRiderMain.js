@@ -8,7 +8,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
   	//Is called by the RiderMain class on the button press
     onRequestRideClick: (eventID) => {
-    	alert("Event ID: " + eventID);
     	//Sends a call to the dispatcher which verifies whether or not the event code exists in the db
       	res = dispatch(verifyData({path: 'events/', data: eventID}));
       	Reactotron.log(res);

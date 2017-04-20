@@ -89,8 +89,6 @@ class RequestRide extends Component {
 
 RequestRide.propTypes = {
   eventID: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  phoneNumber: PropTypes.string.isRequired
 }
 
 export default RequestRide;
