@@ -8,64 +8,25 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
 					  REMOVE_RIDE: "REMOVE_RIDE",
 					  REQUEST_SIGN_IN: "REQUEST_SIGN_IN",
 					  RECEIVE_SIGN_IN: "RECEIVE_SIGN_IN",
+					  START_QUEUE_UPDATES: "START_QUEUE_UPDATES",
+					  STOP_QUEUE_UPDATES: "STOP_QUEUE_UPDATES",
 					  RECEIVE_QUEUE: "RECEIVE_QUEUE"
 					  }
 export default actionNames;
 
-export const requestSignIn = createAction(actionNames.REQUEST_SIGN_IN)
-export const receiveSignIn = createAction(actionNames.RECEIVE_SIGN_IN)
-export const receiveQueue = createAction(actionNames.RECEIVE_QUEUE)
+export const requestSignIn     = createAction(actionNames.REQUEST_SIGN_IN)
+export const startQueueUpdates = createAction(actionNames.START_QUEUE_UPDATES)
+export const stopQueueUpdates  = createAction(actionNames.STOP_QUEUE_UPDATES)
+export const receiveSignIn     = createAction(actionNames.RECEIVE_SIGN_IN)
+export const receiveQueue      = createAction(actionNames.RECEIVE_QUEUE)
+export const requestRide       = createAction(actionNames.REQUEST_RIDE)
+export const removeRide        = createAction(actionNames.REMOVE_RIDE)
+export const requestQueue      = createAction(actionNames.REQUEST_QUEUE)
 
-export const requestRide = (eventID, phoneNumber, name, pickup, dropoff, numRiders, comment) => {
-	return createAction(actionNames.REQUEST_RIDE,
-						(eventID, phoneNumber, name, pickup, dropoff, numRiders, comment) => ({eventID, phoneNumber, name, pickup, dropoff, numRiders, comment}))
-};
-
-export const createEvent = (eventName, eventID) => ({
-	type: CREATE_EVENT,
+export const createEvent = createAction(actionNames.CREATE_EVENT, (eventName, eventID) => ({
 	eventName,
 	eventID,
 	createdAt: Date.now()
 	//even password
-});
+}));
 
-export const removeRider = () => ({
-	type: REMOVE_RIDE,
-	//removes the rider by that name from the queue, send event ID as well
-});
-
-export const requestQueue = (eventID) => ({
-	type: actionNames.REQUEST_QUEUE,
-	payload: { eventID: eventID }
-});
-
-
-//get height to mainitain scroll at top/bottom
-export const updateQueueHeight = (event) => {
-	const layout = event.nativeEvent.layout;
-	return {
-		type: 'UPDATE_MESSAGES_HEIGHT',
-		height: layout.height
-	}
-};
-
-//login actions
-export const login = () => {
-    return function (dispatch) {
-        dispatch(startAuthorizing());
-        firebase.auth()
-                .signInAnonymously()
-                .then(() => {
-                    dispatch(userAuthorized());
-                    dispatch(fetchMessages());
-                });
-    }
-}
-
-export const startAuthorizing = () => ({
-    type: 'USER_START_AUTHORIZING'
-});
-
-export const userAuthorized = () => ({
-    type: 'USER_AUTHORIZED'
-});
