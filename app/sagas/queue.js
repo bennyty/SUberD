@@ -33,7 +33,6 @@ function * fetchQueue( action ) {
 	}
 }
 
-<<<<<<< HEAD
 function * getQueueSize( action ) {
 	try {
 		var { eventID } = action.payload
@@ -48,10 +47,7 @@ function * getQueueSize( action ) {
 	}
 }
 
-function * startQueueSync(action) {
-=======
 function * startSync(path, finishAction) {
->>>>>>> 476740130be55e1a65bb061b7ceabc4fe61ee09e
 	try {
 		const updateChannel = firebase.createEventChannel(path)
 		while(true) {
