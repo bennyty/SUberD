@@ -33,6 +33,7 @@ function * fetchQueue( action ) {
 	}
 }
 
+<<<<<<< HEAD
 function * getQueueSize( action ) {
 	try {
 		var { eventID } = action.payload
@@ -48,23 +49,37 @@ function * getQueueSize( action ) {
 }
 
 function * startQueueSync(action) {
+=======
+function * startSync(path, finishAction) {
+>>>>>>> 476740130be55e1a65bb061b7ceabc4fe61ee09e
 	try {
-		var { eventID } = action.payload
-		const updateChannel = firebase.createEventChannel("events/" + eventID + "/rides")
+		const updateChannel = firebase.createEventChannel(path)
 		while(true) {
 			const rides = yield take(updateChannel)
-			console.log("Got Ride" + JSON.stringify(rides))
-			yield put(actionFactory.receiveQueue({rides: rides}))
+			yield put(finishAction({rides: rides}))
 		}
 	} catch (error) {
+		yield put(finishAction(error))
 		alert(error)
-		yield put(actionFactory.receiveQueue(error))
 	} finally {
 		if (yield cancelled()) {
 		  updateChannel.close()
-		  // console.log('countdown cancelled')
 		}
 	}
+}
+
+function * startRideSync(action) {
+	var { eventID, rideID } = action.payload
+	const path = "events/" + eventID + "/rides/" + ridesID
+	const fun = actionFactory.receiveQueue
+	yield call(startSync, path, fun)
+}
+
+function * startQueueSync(action) {
+	var { eventID } = action.payload
+	const path = "events/" + eventID + "/rides"
+	const fun = actionFactory.receiveQueue
+	yield call(startSync, path, fun)
 }
 
 //takes in an action with data and a path ex. path = /events, data = eventID;

@@ -8,4 +8,6 @@ const rootReducer = combineReducers({
     user
 });
 
+const getUser = state => state.user
+
 export default rootReducer;
