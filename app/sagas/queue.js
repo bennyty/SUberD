@@ -44,6 +44,8 @@ function * startQueueSync(action) {
 	}
 }
 
+//takes in an action with data and a path ex. path = /events, data = eventID;
+//and yields true if data exists at that path, and false if not
 function * verifyData(action) {
 	try {
     var {data} = action.payload;
