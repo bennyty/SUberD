@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions'
 import actionNames from '../actions';
-var stringify = require('json-stable-stringify')
 
 const initialState = {
     isFetching: false,
@@ -21,8 +20,8 @@ const queue = handleActions({
 		next(state, action) {
 			return Object.assign({}, state, {
 				isFetching: false,
-				lastFetched: action.payload.receivedAt,
-				rides: action.payload.rides
+				rides: action.payload.rides,
+				lastFetched: action.meta.receivedAt
 			})
 		}
 	}

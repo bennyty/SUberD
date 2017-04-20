@@ -24,24 +24,35 @@ function * fetchQueue( action ) {
 	}
 }
 
-function * startQueueSync(action) {
+function * startSync(path, finishAction) {
 	try {
-		var { eventID } = action.payload
-		const updateChannel = firebase.createEventChannel("events/" + eventID + "/rides")
+		const updateChannel = firebase.createEventChannel(path)
 		while(true) {
 			const rides = yield take(updateChannel)
-			console.log("Got Ride" + JSON.stringify(rides))
-			yield put(actionFactory.receiveQueue({rides: rides}))
+			yield put(finishAction({rides: rides}))
 		}
 	} catch (error) {
+		yield put(finishAction(error))
 		alert(error)
-		yield put(actionFactory.receiveQueue(error))
 	} finally {
 		if (yield cancelled()) {
 		  updateChannel.close()
-		  // console.log('countdown cancelled')
 		}
 	}
+}
+
+function * startRideSync(action) {
+	var { eventID, rideID } = action.payload
+	const path = "events/" + eventID + "/rides/" + ridesID
+	const fun = actionFactory.receiveQueue
+	yield call(startSync, path, fun)
+}
+
+function * startQueueSync(action) {
+	var { eventID } = action.payload
+	const path = "events/" + eventID + "/rides"
+	const fun = actionFactory.receiveQueue
+	yield call(startSync, path, fun)
 }
 
 
