@@ -81,24 +81,17 @@ function * startQueueSync(action) {
 //takes in an action with data and a path ex. path = /events, data = eventID;
 //and yields true if data exists at that path, and false if not
 function * verifyData(action) {
-	try {
     var {data} = action.payload;
     var {path} = action.payload;
     var snapshot = yield call(firebase.verifyData, path +data)
 		var database_data = snapshot.val();
-    alert(snapshot.val());
-    if(snapshot.val() != null){
-      alert("TRUE");
-      yield true;
+    alert(database_data);
+    if(database_data != null){
+		yield put(actionFactory.receiveVerification({verify: 'true'}))
     }
     else{
-      alert("False");
-      yield false;
+		yield put(actionFactory.receiveVerification({verify: 'false'}))
     }
-	} catch (error) {
-		alert(error)
-		yield error
-	}
 }
 
 // *********************** Watchers *************************
@@ -133,8 +126,8 @@ function * watchRequestRide() {
 
 export default function* root() {
 	try {
-    yield takeEvery(actionNames.VERFIY_DATA, verifyData)
-    yield takeEvery(actionNames.GET_QUEUE_SIZE, getQueueSize)
+    yield takeEvery(actionNames.VERIFY_DATA, verifyData)
+    //    yield takeEvery(actionNames.GET_QUEUE_SIZE, getQueueSize)
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
 		yield fork(watchRequestQueue)
