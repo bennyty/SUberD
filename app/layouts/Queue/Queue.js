@@ -55,6 +55,11 @@ class Queue extends Component {
   }
 
   render() {
+
+    const onButtonClick = () => {
+      Actions.queue();
+    }
+
     return (
       <View style={styles.container}>
         <View style={{height: 100}}></View>
@@ -63,6 +68,11 @@ class Queue extends Component {
           <Text style={styles.estimate}>Number of Rides: {this.state.dataSource.getRowCount()}</Text>
           <Text style={styles.estimate}>Total Estimated Time: {this.state.dataSource.getRowCount() * 10} minutes</Text>
         </View>
+        <TouchableHighlight 
+        style = {styles.submit}
+        onPress = {onButtonClick}>
+          <Text> Render </Text>
+        </TouchableHighlight>
         {/*The table itself*/}
         <View style={styles.queueTable}>
           {/*Lists the information in rows, where each entry is displayed in its own RideElement*/}

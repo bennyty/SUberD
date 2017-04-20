@@ -39,6 +39,10 @@ export default StyleSheet.create({
       borderWidth: 1,
       backgroundColor: 'white',
    },
+   submit: {
+      backgroundColor: '#FFC900',
+      padding: 10,
+  },
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
