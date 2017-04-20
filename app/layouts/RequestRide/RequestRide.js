@@ -20,11 +20,31 @@ class RequestRide extends Component {
        pickup: '',
        dropoff: '',
        numRiders: '',
-       comment: ''
+       comment: '',
+       warning: false
     }
   }
 
   render() {
+    //Function definition
+    const onButtonClick = () => {
+      if(this.state.pickup == "" || this.state.dropoff == "" || parseInt(this.state.numRiders) < 1)
+        this.state.warning = true;
+      else
+        Actions.rideConfirmation({eventID: this.props.eventID, phoneNumber: this.props.phoneNumber, name: this.props.name, pickup: this.state.pickup, dropoff: this.state.dropoff, numRiders: this.state.numRiders, comment: this.state.comment});
+    }
+
+    function WarningMessage(props) {
+      if (props.warning){
+        return(
+          <Text>
+            Some fields are incorrect. Please make sure you have a valid number of passengers and all required input fields have values.
+          </Text>);
+      }
+      else
+        return (<Text></Text>);
+    }
+
     return (
       <View style={styles.container}>
         <View></View>
@@ -43,6 +63,8 @@ class RequestRide extends Component {
             onChangeText={(text) => this.setState({dropoff: text})}/>
           <TextInput
             style = {styles.inp}
+            keyboardType = 'numeric'
+            defaultValue = '1'
             placeholder = '# of People'
             onChangeText={(text) => this.setState({numRiders: text})}/>
           <TextInput
@@ -52,11 +74,12 @@ class RequestRide extends Component {
             placeholder = 'Comment for Driver (Optional)'
             onChangeText={(text) => this.setState({comment: text})}/>
         </View>
+        <WarningMessage warning={this.state.warning}/>
         {/*Button for submitting the info*/}
         {/*onPress() calls the submitClick() function in the VisibleRideRequest class*/}
         <TouchableHighlight 
         style = {styles.submit}
-        onPress = {() => Actions.rideConfirmation({eventID: this.props.eventID, phoneNumber: this.props.phoneNumber, name: this.props.name, pickup: this.state.pickup, dropoff: this.state.dropoff, numRiders: this.state.numRiders, comment: this.state.comment})}>
+        onPress = {onButtonClick}>
           <Text> Submit </Text>
         </TouchableHighlight>
       </View>

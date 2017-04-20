@@ -79,7 +79,7 @@ class Queue extends Component {
 Queue.propTypes = {
   rides: PropTypes.arrayOf(PropTypes.shape({
     comment: PropTypes.string,
-    num_passengers: PropTypes.number.isRequired,
+    num_passengers: PropTypes.string.isRequired,
     pickup: PropTypes.string.isRequired,
     dropoff: PropTypes.string.isRequired,
     user: PropTypes.shape({

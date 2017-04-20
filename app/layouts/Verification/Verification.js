@@ -12,21 +12,6 @@ import Reactotron from 'reactotron-react-native'
 import { dispatch } from 'redux'
 import { verification } from '../../actions'
 
-class WrongCodeMessage extends Component{
-  render(){
-    if (this.state.displayWarning){
-      return(
-        <Text>
-          Incorrect access code. 
-          Make sure capitalization is correct.
-        </Text>
-      );
-    }
-    else{
-      return(<Text></Text>);
-    }
-  }
-}
 
 function WarningOn() {
   return (

@@ -37,9 +37,62 @@ class ExternalLink extends Component {
 class Ride extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      inRoute: false
+    }
   }
 
   render() {
+
+    const onPickupClick = () => {
+      this.state.inRoute = true;
+    }
+    const onCompleteClick = () => {
+      alert("complete");
+    }
+    const onDenyClick = () => {
+      alert("deny");
+    }
+    const onCancelClick = () => {
+      
+    }
+
+    function DisplayButtons(props) {
+      if (props.inRoute){
+        return(
+          <View>
+            <TouchableHighlight 
+              onPress = {() => onCompleteClick()}
+              style = {styles.pickup}>
+              <Text>Ride Complete!</Text>
+            </TouchableHighlight>
+            <TouchableHighlight 
+              onPress = {() => onCancelClick()}
+              style = {styles.deny}>
+              <Text>Cancel Ride</Text>
+            </TouchableHighlight>
+          </View>
+        );
+      }
+      else{
+        return(
+          <View>
+            <TouchableHighlight 
+              onPress = {() => onPickupClick()}
+              style = {styles.pickup}>
+              <Text>Pick up</Text>
+            </TouchableHighlight>
+            <TouchableHighlight 
+              onPress = {() => onDenyClick()}
+              style = {styles.deny}>
+              <Text>Deny :(</Text>
+            </TouchableHighlight>
+          </View>
+        );
+      }
+    }
+
     return (
       <View style={styles.container}>
         <View style={{height:100}}></View>
@@ -70,17 +123,7 @@ class Ride extends Component {
         </View>
         <View style={styles.buttons}>
           {/*Button to choose to pick up ride*/}
-          <TouchableHighlight 
-            onPress = {() => this.props.onSubmitClick()}
-            style = {styles.pickup}>
-            <Text>Pick up</Text>
-          </TouchableHighlight>
-          {/*Button to choose to deny/cancel the ride*/}
-          <TouchableHighlight 
-            onPress = {() => this.props.onCancelClick(this.props.all.key)}
-            style = {styles.deny}>
-            <Text>Deny :(</Text>
-          </TouchableHighlight>
+          <DisplayButtons inRoute={this.state.inRoute}/>
         </View>
       </View>
     );
