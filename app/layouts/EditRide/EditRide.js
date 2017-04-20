@@ -53,22 +53,26 @@ class EditRide extends Component {
         </View>
         <View style={styles.inputs}>
           {/*Input boxes for each requested field*/}
+          <Text>From:</Text>
           <TextInput
             style = {styles.inp}
             placeholder = {this.props.pickup}
             defaultValue = {this.props.pickup}
             onChangeText={(text) => this.setState({pickup: text})}/>
+          <Text>To:</Text>
           <TextInput
             style = {styles.inp}
             placeholder = {this.props.dropoff}
             defaultValue = {this.props.dropoff}
             onChangeText={(text) => this.setState({dropoff: text})}/>
+          <Text>Number of Passengers:</Text>
           <TextInput
             style = {styles.inp}
             keyboardType = 'numeric'
             placeholder = {this.props.numRiders}
             defaultValue = {this.props.numRiders}
             onChangeText={(text) => this.setState({numRiders: text})}/>
+          <Text>Comment for Driver:</Text>
           <TextInput
             style = {styles.inp}
             multiline = {true}

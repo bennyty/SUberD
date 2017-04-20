@@ -33,7 +33,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: 'powderblue',
     width: 300,
-    height: 300,
+    height: 350,
   },
   submit: {
       backgroundColor: '#FFC900',

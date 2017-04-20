@@ -53,20 +53,24 @@ class RequestRide extends Component {
         </View>
         <View style={styles.inputs}>
           {/*Input boxes for each requested field*/}
+          <Text>From: </Text>
           <TextInput
             style = {styles.inp}
             placeholder = 'from'
             onChangeText={(text) => this.setState({pickup: text})}/>
+          <Text>To: </Text>
           <TextInput
             style = {styles.inp}
             placeholder = 'To'
             onChangeText={(text) => this.setState({dropoff: text})}/>
+          <Text>Number of Passengers: </Text>
           <TextInput
             style = {styles.inp}
             keyboardType = 'numeric'
             defaultValue = '1'
             placeholder = '# of People'
             onChangeText={(text) => this.setState({numRiders: text})}/>
+          <Text>Comment for Driver:</Text>
           <TextInput
             style = {styles.inp}
             multiline = {true}
