@@ -44,6 +44,26 @@ function * startQueueSync(action) {
 	}
 }
 
+function * verifyData(action) {
+	try {
+    var {data} = action.payload;
+    var {path} = action.payload;
+    var snapshot = yield call(firebase.verifyData, path +data)
+		var database_data = snapshot.val();
+    alert(snapshot.val());
+    if(snapshot.val() != null){
+      alert("TRUE");
+      yield true;
+    }
+    else{
+      alert("False");
+      yield false;
+    }
+	} catch (error) {
+		alert(error)
+		yield error
+	}
+}
 
 // *********************** Watchers *************************
 function * watchStartUpdates() {
@@ -77,6 +97,7 @@ function * watchRequestRide() {
 
 export default function* root() {
 	try {
+    yield takeEvery(actionNames.VERIFY_DATA, verifyData)
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
 		yield fork(watchRequestQueue)

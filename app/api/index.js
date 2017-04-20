@@ -23,6 +23,16 @@ export function push(path, item) {
     return newItemRef.set(item);
 }
 
+export function verifyData(path){
+  var ref = database.ref(path);
+  return new Promise( (resolve, reject) => {
+    ref.once("value", resolve , reject);
+});
+
+
+
+}
+
 // Takes a path to subscribe to
 // Returns a function that asks for two callbacks
 export function sync(path){
