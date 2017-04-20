@@ -28,9 +28,6 @@ export function verifyData(path){
   return new Promise( (resolve, reject) => {
     ref.once("value", resolve , reject);
 });
-
-
-
 }
 
 // Takes a path to subscribe to

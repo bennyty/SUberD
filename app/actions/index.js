@@ -5,13 +5,16 @@ import { createAction } from 'redux-actions'
 const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
                       REQUEST_QUEUE: "REQUEST_QUEUE",
                       CREATE_EVENT: "CREATE_EVENT",
+                      ADD_DRIVER: "ADD_DRIVER",
                       REMOVE_RIDE: "REMOVE_RIDE",
                       REQUEST_SIGN_IN: "REQUEST_SIGN_IN",
                       RECEIVE_SIGN_IN: "RECEIVE_SIGN_IN",
                       START_QUEUE_UPDATES: "START_QUEUE_UPDATES",
                       STOP_QUEUE_UPDATES: "STOP_QUEUE_UPDATES",
                       RECEIVE_QUEUE: "RECEIVE_QUEUE",
-                      VERIFY_DATA: "VERIFY_DATA"
+                      RECEIVE_QUEUE_SIZE: "RECEIVE_QUEUE_SIZE",
+                      VERIFY_DATA: "VERIFY_DATA" ,
+                      GET_QUEUE_SIZE: "GET_QUEUE_SIZE"
 					  }
 export default actionNames;
 
@@ -23,10 +26,17 @@ export const receiveQueue      = createAction(actionNames.RECEIVE_QUEUE, (payloa
 	...payload,
 	receivedAt: Date.now()
 }))
+
+export const receiveQueueSize      = createAction(actionNames.RECEIVE_QUEUE_SIZE, (payload) => ({
+	...payload
+}))
+
 export const requestRide       = createAction(actionNames.REQUEST_RIDE)
 export const removeRide        = createAction(actionNames.REMOVE_RIDE)
 export const requestQueue      = createAction(actionNames.REQUEST_QUEUE)
 export const verifyData        = createAction(actionNames.VERIFY_DATA)
+export const addDriver         = createAction(actionNames.ADD_DRIVER)
+export const getQueueSize      = createAction(actionNames.GET_QUEUE_SIZE)
 
 export const createEvent = createAction(actionNames.CREATE_EVENT, (eventName, eventID) => ({
 	eventName,

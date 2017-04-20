@@ -12,6 +12,15 @@ function * requestRide(action) {
 	}
 }
 
+function * addDriver(action) {
+	try {
+		var { eventID } = action.payload
+		yield call( firebase.push, "events/" + eventID + "/drivers",  action)
+	} catch(e) {
+		alert(e)
+	}
+}
+
 function * fetchQueue( action ) {
 	try {
 		var { eventID } = action.payload
@@ -21,6 +30,20 @@ function * fetchQueue( action ) {
 	} catch (error) {
 		alert(error)
 		yield put(actionFactory.receiveQueue(error))
+	}
+}
+
+function * getQueueSize( action ) {
+	try {
+		var { eventID } = action.payload
+    var {data} = action.payload
+		var snapshot = yield call( firebase.getAll, "events/" + eventID + "/" + data)
+		var numChildren = snapshot.numChildren();
+    alert(numChildren);
+		yield put(actionFactory.receiveQueueSize({numChildren: numChildren} ))
+	} catch (error) {
+		alert(error)
+		yield put(actionFactory.receiveQueueSize(error))
 	}
 }
 
@@ -99,7 +122,7 @@ function * watchRequestRide() {
 
 export default function* root() {
 	try {
-    yield takeEvery(actionNames.VERIFY_DATA, verifyData)
+    yield takeEvery(actionNames.GET_QUEUE_SIZE, getQueueSize)
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
 		yield fork(watchRequestQueue)
