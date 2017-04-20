@@ -14,7 +14,8 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
                       RECEIVE_QUEUE: "RECEIVE_QUEUE",
                       RECEIVE_QUEUE_SIZE: "RECEIVE_QUEUE_SIZE",
                       VERIFY_DATA: "VERIFY_DATA" ,
-                      GET_QUEUE_SIZE: "GET_QUEUE_SIZE"
+                      GET_QUEUE_SIZE: "GET_QUEUE_SIZE",
+                      RECEIVE_VERIFICATION: "RECEIVE_VERIFICATION"
 					  }
 export default actionNames;
 
@@ -27,6 +28,10 @@ export const receiveQueue      = createAction(actionNames.RECEIVE_QUEUE, null , 
 }))
 
 export const receiveQueueSize      = createAction(actionNames.RECEIVE_QUEUE_SIZE, (payload) => ({
+	...payload
+}))
+
+export const receiveVerification      = createAction(actionNames.RECEIVE_VERIFICATION, (payload) => ({
 	...payload
 }))
 
