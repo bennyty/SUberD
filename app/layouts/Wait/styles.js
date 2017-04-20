@@ -12,7 +12,7 @@ export default StyleSheet.create({
     alignItems: 'flex-start'
   },
   header: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: 'bold'
   },
   stats: {
@@ -21,6 +21,7 @@ export default StyleSheet.create({
     textAlign: 'left',
   },
   rideInfo: {
+    fontSize: 16,
     textDecorationLine: 'underline'
   },
   submit: {
