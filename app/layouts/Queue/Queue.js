@@ -27,7 +27,7 @@ class RideElement extends Component{
           {/*First row of data*/}
           <View style={styles.elementRow}>
             <Text>{this.props.dropoff}</Text>
-            <Text>{this.props.user.first_name} {this.props.user.last_name}</Text>
+            <Text>{this.props.name}</Text>
           </View>
           {/*Second row*/}
           <View style={styles.elementRow}>
@@ -83,9 +83,7 @@ Queue.propTypes = {
     numRiders: PropTypes.string.isRequired,
     pickup: PropTypes.string.isRequired,
     dropoff: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-      first_name: PropTypes.string.isRequired,
-      last_name: PropTypes.string.isRequired}).isRequired
+    name: PropTypes.string.isRequired
   }).isRequired).isRequired
 }
 
