@@ -5,12 +5,13 @@ import { createAction } from 'redux-actions'
 const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
                       REQUEST_QUEUE: "REQUEST_QUEUE",
                       CREATE_EVENT: "CREATE_EVENT",
-					  REMOVE_RIDE: "REMOVE_RIDE",
-					  REQUEST_SIGN_IN: "REQUEST_SIGN_IN",
-					  RECEIVE_SIGN_IN: "RECEIVE_SIGN_IN",
-					  START_QUEUE_UPDATES: "START_QUEUE_UPDATES",
-					  STOP_QUEUE_UPDATES: "STOP_QUEUE_UPDATES",
-					  RECEIVE_QUEUE: "RECEIVE_QUEUE"
+                      REMOVE_RIDE: "REMOVE_RIDE",
+                      REQUEST_SIGN_IN: "REQUEST_SIGN_IN",
+                      RECEIVE_SIGN_IN: "RECEIVE_SIGN_IN",
+                      START_QUEUE_UPDATES: "START_QUEUE_UPDATES",
+                      STOP_QUEUE_UPDATES: "STOP_QUEUE_UPDATES",
+                      RECEIVE_QUEUE: "RECEIVE_QUEUE",
+                      VERIFY_DATA: "VERIFY_DATA"
 					  }
 export default actionNames;
 
@@ -24,6 +25,7 @@ export const receiveQueue      = createAction(actionNames.RECEIVE_QUEUE, null , 
 export const requestRide       = createAction(actionNames.REQUEST_RIDE)
 export const removeRide        = createAction(actionNames.REMOVE_RIDE)
 export const requestQueue      = createAction(actionNames.REQUEST_QUEUE)
+export const verifyData        = createAction(actionNames.VERIFY_DATA)
 
 export const createEvent = createAction(actionNames.CREATE_EVENT, (eventName, eventID) => ({
 	eventName,
