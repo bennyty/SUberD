@@ -12,7 +12,6 @@ const mapDispatchToProps = (dispatch) => {
     	//Sends a call to the dispatcher which verifies whether or not the event code exists in the db
       	res = dispatch(verifyData({path: 'events/', data: eventID}));
       	Reactotron.log(res);
-      	alert(res)
       	if(res)
       		Actions.requestRide({eventID: eventID});
       	else

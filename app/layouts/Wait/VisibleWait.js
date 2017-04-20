@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     onCancelClick: (rideID) => {
     	alert("Cancelled Ride");
       //dispatch(removeRide({}));
-      Actions.riderMain();
+      Actions.queue();
     }
   }
 }

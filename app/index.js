@@ -21,8 +21,7 @@ export default class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <RouterWithRedux>
-          <Scene key='queue' component={Queue} title='Ride Queue'/>
+        <RouterWithRedux> 
           <Scene key='riderMain' component={RiderMain} title='Home'/>
           <Scene key='requestRide' component={RequestRide} title='Request a Ride'/>
           <Scene key='register' component={Register} title='Register'/>
@@ -32,6 +31,7 @@ export default class App extends Component {
           <Scene key='editRide' component={EditRide} title='Edit Ride'/>
           <Scene key='rideEditConfirmation' component={RideEditConfirmation} title='Edit Confirmation'/>
           <Scene key='wait' component={Wait} title='Ride Information'/>
+          <Scene key='queue' component={Queue} title='Ride Queue'/>
         </RouterWithRedux>
       </Provider>
     )
