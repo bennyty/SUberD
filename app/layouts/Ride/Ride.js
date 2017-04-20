@@ -99,11 +99,11 @@ class Ride extends Component {
         <View style={styles.info}>
           {/*Gives all information about the ride*/}
           {/*Name*/}
-          <Text>Name: {this.props.all.user.first_name} {this.props.all.user.last_name}</Text>
+          <Text>Name: {this.props.all.name}</Text>
           {/*Phone number*/}
           <View style={{flexDirection: 'row'}}>
             <Text>Number: </Text>
-            <ExternalLink textLink={this.props.all.user.phone_number}/>
+            <ExternalLink textLink={this.props.all.phoneNumber}/>
           </View>
           {/*Pick up location*/}
           <View style={{flexDirection: 'row'}}>
@@ -116,7 +116,7 @@ class Ride extends Component {
             <ExternalLink textLink={this.props.all.dropoff}/>
           </View>
           {/*Passenger, queue spot, drive time, and comment*/}
-          <Text>Passengers: {this.props.all.num_passengers}</Text>
+          <Text>Passengers: {this.props.all.numRiders}</Text>
           <Text>Queue Spot: {Number(this.props.all.index)+1}</Text>
           <Text>Drive time: {(Number(this.props.all.index)+1)*10} minutes</Text>
           <Text>Comment: {this.props.all.comment}</Text>
