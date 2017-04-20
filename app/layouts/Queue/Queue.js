@@ -32,7 +32,7 @@ class RideElement extends Component{
           {/*Second row*/}
           <View style={styles.elementRow}>
             <Text>{this.props.pickup}</Text>
-            <Text>{this.props.num_passengers}</Text>
+            <Text>{this.props.numRiders}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -49,7 +49,8 @@ class Queue extends Component {
     //This ds is given to the ListView class to be displayed as a table
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(props.rides)
+      dataSource: ds.cloneWithRows(props.rides),
+      temp: ''
     }
   }
 
@@ -79,7 +80,7 @@ class Queue extends Component {
 Queue.propTypes = {
   rides: PropTypes.arrayOf(PropTypes.shape({
     comment: PropTypes.string,
-    num_passengers: PropTypes.string.isRequired,
+    numRiders: PropTypes.string.isRequired,
     pickup: PropTypes.string.isRequired,
     dropoff: PropTypes.string.isRequired,
     user: PropTypes.shape({

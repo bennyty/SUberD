@@ -32,6 +32,13 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
+  inp: {
+      margin: 15,
+      height: 40,
+      borderColor: 'grey',
+      borderWidth: 1,
+      backgroundColor: 'white',
+   },
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
