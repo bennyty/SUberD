@@ -1,27 +1,23 @@
 import { connect } from 'react-redux'
-import Ride from './Ride'
+import Verification from './Verification'
 import Reactotron from 'reactotron-react-native'
 import {Actions} from 'react-native-router-flux'
 
 const mapDispatchToProps = (dispatch) => {
   return {
-  	//Is called by the Ride class on the 'submit' button press
+  	//Is called by the RequestRide class on the 'submit' button press
     onSubmitClick: () => {
-    	alert("Submit");
+    	alert("Your account has been verified!");
       	//dispatch(toggleTodo(pickup, dropoff, num_passengers, comment))
-    },
-    //Is called by the Ride class on the 'cancel' button press
-    onCancelClick: (rideID) => {
-    	alert("Cancel");
-      	//dispatch(toggleTodo(pickup, dropoff, num_passengers, comment))
+      	Actions.requestRide();
     }
   }
 }
 
 //Connects the Ride Request page to a dispatcher which
 //can send actions out via the Factory
-const VisibleRide = connect(
+const VisibleVerification = connect(
   mapDispatchToProps
-)(Ride)
+)(Verification)
 
-export default VisibleRide
+export default VisibleVerification

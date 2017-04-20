@@ -6,6 +6,13 @@ import configureStore from './config/store/configureStore'
 import RequestRide from './layouts/RequestRide'
 import Queue from './layouts/Queue'
 import Ride from './layouts/Ride'
+import Register from './layouts/Register'
+import Verification from './layouts/Verification'
+import RideConfirmation from './layouts/RideConfirmation'
+import RiderMain from './layouts/RiderMain'
+import EditRide from './layouts/EditRide'
+import RideEditConfirmation from './layouts/RideEditConfirmation'
+import Wait from './layouts/Wait'
 
 const RouterWithRedux = connect()(Router)
 const store = configureStore()
@@ -15,9 +22,16 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <RouterWithRedux>
+          <Scene key='riderMain' component={RiderMain} title='Home'/>
           <Scene key='requestRide' component={RequestRide} title='Request a Ride'/>
+          <Scene key='register' component={Register} title='Register'/>
+          <Scene key='verification' component={Verification} title='Verification'/>
           <Scene key='queue' component={Queue} title='Ride Queue'/>
           <Scene key='ride' component={Ride} title='Ride'/>
+          <Scene key='rideConfirmation' component={RideConfirmation} title='Ride Confirmation'/>
+          <Scene key='editRide' component={EditRide} title='Edit Ride'/>
+          <Scene key='rideEditConfirmation' component={RideEditConfirmation} title='Edit Confirmation'/>
+          <Scene key='wait' component={Wait} title='Ride Information'/>
         </RouterWithRedux>
       </Provider>
     )

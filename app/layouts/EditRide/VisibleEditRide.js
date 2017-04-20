@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import RequestRide from './RequestRide'
+import EditRide from './EditRide'
 import Reactotron from 'reactotron-react-native'
 import {Actions} from 'react-native-router-flux'
 
@@ -13,8 +13,8 @@ const mapStateToProps = (state) => {
 
 //Connects the Ride Request page to a dispatcher which
 //can send actions out via the Factory
-const VisibleRequestRide = connect(
+const VisibleEditRide = connect(
   mapStateToProps
-)(RequestRide)
+)(EditRide)
 
-export default VisibleRequestRide
+export default VisibleEditRide
