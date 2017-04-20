@@ -13,7 +13,6 @@ function * requestRide(action) {
 }
 
 function * fetchQueue( action ) {
-	alert("ran fetch queue")
 	try {
 		var { eventID } = action.payload
 		var snapshot = yield call( firebase.getAll, "events/" + eventID + "/rides")

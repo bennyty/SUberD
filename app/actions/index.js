@@ -18,7 +18,10 @@ export const requestSignIn     = createAction(actionNames.REQUEST_SIGN_IN)
 export const startQueueUpdates = createAction(actionNames.START_QUEUE_UPDATES)
 export const stopQueueUpdates  = createAction(actionNames.STOP_QUEUE_UPDATES)
 export const receiveSignIn     = createAction(actionNames.RECEIVE_SIGN_IN)
-export const receiveQueue      = createAction(actionNames.RECEIVE_QUEUE)
+export const receiveQueue      = createAction(actionNames.RECEIVE_QUEUE, (payload) => ({
+	...payload,
+	receivedAt: Date.now()
+}))
 export const requestRide       = createAction(actionNames.REQUEST_RIDE)
 export const removeRide        = createAction(actionNames.REMOVE_RIDE)
 export const requestQueue      = createAction(actionNames.REQUEST_QUEUE)
