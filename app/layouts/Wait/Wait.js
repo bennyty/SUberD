@@ -17,14 +17,14 @@ class Wait extends Component {
     return (
       <View style={styles.container}>
         <View></View>
-        <Text>You have been successfully added to the queue!</Text>
-        <View>
-          <Text>Wait time: </Text>
-          <Text>Queue Spot: </Text>
+        <Text style={styles.header}>You have been successfully added to the queue!</Text>
+        <View style={styles.statsView}>
+          <Text style={styles.stats}>Wait time: </Text>
+          <Text style={styles.stats}>Queue Spot: </Text>
         </View>
         <View>
           {/*Input boxes for each requested field*/}
-          <Text>Your Ride Information</Text>
+          <Text style={styles.rideInfo}>Your Ride Information</Text>
           <Text></Text>
           <Text>From: {this.props.pickup}</Text>
           <Text>To: {this.props.dropoff}</Text>

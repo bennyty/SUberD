@@ -8,6 +8,21 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#72EB90',
   },
+  statsView: {
+    alignItems: 'flex-start'
+  },
+  header: {
+    fontSize: 14,
+    fontWeight: 'bold'
+  },
+  stats: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'left',
+  },
+  rideInfo: {
+    textDecorationLine: 'underline'
+  },
   submit: {
       backgroundColor: '#FFC900',
       padding: 10,
