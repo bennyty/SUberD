@@ -133,6 +133,7 @@ function * watchRequestRide() {
 
 export default function* root() {
 	try {
+    yield takeEvery(actionNames.VERFIY_DATA, verifyData)
     yield takeEvery(actionNames.GET_QUEUE_SIZE, getQueueSize)
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
