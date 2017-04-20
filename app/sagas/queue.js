@@ -6,7 +6,7 @@ import * as firebase from '../api';
 function * requestRide(action) {
 	try {
 		var { eventID } = action.payload
-		yield call( firebase.push, "events/" + eventID + "/rides",  action)
+		yield call( firebase.push, "events/" + eventID + "/rides",  action.payload)
 	} catch(e) {
 		alert(e)
 	}
@@ -52,7 +52,10 @@ function * startSync(path, finishAction) {
 		const updateChannel = firebase.createEventChannel(path)
 		while(true) {
 			const rides = yield take(updateChannel)
-			yield put(finishAction({rides: rides}))
+			var result = [];
+			for(var i in rides)
+			    result.push(rides[i]);
+			yield put(finishAction({rides: result}))
 		}
 	} catch (error) {
 		yield put(finishAction(error))
@@ -133,8 +136,8 @@ function * watchRequestRide() {
 
 export default function* root() {
 	try {
-    yield takeEvery(actionNames.VERFIY_DATA, verifyData)
-    yield takeEvery(actionNames.GET_QUEUE_SIZE, getQueueSize)
+    // yield takeEvery(actionNames.VERFIY_DATA, verifyData)
+    // yield takeEvery(actionNames.GET_QUEUE_SIZE, getQueueSize)
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
 		yield fork(watchRequestQueue)
