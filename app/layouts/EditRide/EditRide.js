@@ -10,17 +10,17 @@ import styles from './styles';
 import {Actions} from 'react-native-router-flux'
 
 import { dispatch } from 'redux'
-import { requestRide } from '../../actions'
+import { editRide } from '../../actions'
 
-class RequestRide extends Component {
-  constructor() {
-    super()
+class EditRide extends Component {
+  constructor(props) {
+    super(props)
     //Sets the state of the component
     this.state = {
-       pickup: '',
-       dropoff: '',
-       numRiders: '1',
-       comment: '',
+       pickup: this.props.pickup,
+       dropoff: this.props.dropoff,
+       numRiders: this.props.numRiders,
+       comment: this.props.comment,
        warning: false
     }
   }
@@ -31,7 +31,7 @@ class RequestRide extends Component {
       if(this.state.pickup == "" || this.state.dropoff == "" || parseInt(this.state.numRiders) < 1)
         this.state.warning = true;
       else
-        Actions.rideConfirmation({eventID: this.props.eventID, phoneNumber: this.props.phoneNumber, name: this.props.name, pickup: this.state.pickup, dropoff: this.state.dropoff, numRiders: this.state.numRiders, comment: this.state.comment});
+        Actions.rideEditConfirmation({eventID: this.props.eventID, phoneNumber: this.props.phoneNumber, name: this.props.name, pickup: this.state.pickup, dropoff: this.state.dropoff, numRiders: this.state.numRiders, comment: this.state.comment});
     }
 
     function WarningMessage(props) {
@@ -55,23 +55,26 @@ class RequestRide extends Component {
           {/*Input boxes for each requested field*/}
           <TextInput
             style = {styles.inp}
-            placeholder = 'from'
+            placeholder = {this.props.pickup}
+            defaultValue = {this.props.pickup}
             onChangeText={(text) => this.setState({pickup: text})}/>
           <TextInput
             style = {styles.inp}
-            placeholder = 'To'
+            placeholder = {this.props.dropoff}
+            defaultValue = {this.props.dropoff}
             onChangeText={(text) => this.setState({dropoff: text})}/>
           <TextInput
             style = {styles.inp}
             keyboardType = 'numeric'
-            defaultValue = '1'
-            placeholder = '# of People'
+            placeholder = {this.props.numRiders}
+            defaultValue = {this.props.numRiders}
             onChangeText={(text) => this.setState({numRiders: text})}/>
           <TextInput
             style = {styles.inp}
             multiline = {true}
             numberOfLines = {4}
-            placeholder = 'Comment for Driver (Optional)'
+            placeholder = {this.props.comment}
+            defaultValue = {this.props.comment}
             onChangeText={(text) => this.setState({comment: text})}/>
         </View>
         <WarningMessage warning={this.state.warning}/>
@@ -87,10 +90,10 @@ class RequestRide extends Component {
   }
 }
 
-RequestRide.propTypes = {
+EditRide.propTypes = {
   eventID: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired
 }
 
-export default RequestRide;
+export default EditRide;

@@ -10,15 +10,22 @@ import styles from './styles';
 import {Actions} from 'react-native-router-flux'
 
 import { dispatch } from 'redux'
-import { rideConfirmation } from '../../actions'
+import { wait } from '../../actions'
 
-class RideConfirmation extends Component {
+class Wait extends Component {
   render() {
     return (
       <View style={styles.container}>
         <View></View>
+        <Text>You have been successfully added to the queue!</Text>
+        <View>
+          <Text>Wait time: </Text>
+          <Text>Queue Spot: </Text>
+        </View>
         <View>
           {/*Input boxes for each requested field*/}
+          <Text>Your Ride Information</Text>
+          <Text></Text>
           <Text>From: {this.props.pickup}</Text>
           <Text>To: {this.props.dropoff}</Text>
           <Text>Number of Passengers: {this.props.numRiders}</Text>
@@ -26,19 +33,28 @@ class RideConfirmation extends Component {
         </View>
         {/*Button for submitting the info*/}
         {/*onPress() calls the submitClick() function in the VisibleRideRequest class*/}
-        <TouchableHighlight 
-        style = {styles.submit}
-        onPress = {() => this.props.onConfirmClick(this.props.eventID, this.props.phoneNumber, this.props.name, this.props.pickup, this.props.dropoff, this.props.numRiders, this.props.comment)}>
-          <Text> Confirm! </Text>
-        </TouchableHighlight>
+        <View>
+          <TouchableHighlight 
+          style = {styles.submit}
+          onPress = {() => this.props.onEditClick(this.props.rideID, this.props.eventID, this.props.pickup, this.props.dropoff, this.props.numRiders, this.props.comment)}>
+            <Text> Edit Ride Information </Text>
+          </TouchableHighlight>
+          <TouchableHighlight 
+            onPress = {() => this.props.onCancelClick(this.props.rideID)}
+            style = {styles.deny}>
+            <Text>Cancel</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
 }
 
-RideConfirmation.propTypes = {
-  onConfirmClick: PropTypes.func.isRequired,
+Wait.propTypes = {
+  onEditClick: PropTypes.func.isRequired,
+  onCancelClick: PropTypes.func.isRequired,
   eventID: PropTypes.string.isRequired,
+  rideID: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   pickup: PropTypes.string.isRequired,
@@ -47,4 +63,4 @@ RideConfirmation.propTypes = {
   comment: PropTypes.string.isRequired
 }
 
-export default RideConfirmation;
+export default Wait;

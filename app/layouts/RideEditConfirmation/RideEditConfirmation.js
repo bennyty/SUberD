@@ -10,9 +10,9 @@ import styles from './styles';
 import {Actions} from 'react-native-router-flux'
 
 import { dispatch } from 'redux'
-import { rideConfirmation } from '../../actions'
+import { requestRide } from '../../actions'
 
-class RideConfirmation extends Component {
+class RequestRide extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -29,14 +29,14 @@ class RideConfirmation extends Component {
         <TouchableHighlight 
         style = {styles.submit}
         onPress = {() => this.props.onConfirmClick(this.props.eventID, this.props.phoneNumber, this.props.name, this.props.pickup, this.props.dropoff, this.props.numRiders, this.props.comment)}>
-          <Text> Confirm! </Text>
+          <Text> Confirm Ride Edit </Text>
         </TouchableHighlight>
       </View>
     );
   }
 }
 
-RideConfirmation.propTypes = {
+RequestRide.propTypes = {
   onConfirmClick: PropTypes.func.isRequired,
   eventID: PropTypes.string.isRequired,
   phoneNumber: PropTypes.string.isRequired,
@@ -47,4 +47,4 @@ RideConfirmation.propTypes = {
   comment: PropTypes.string.isRequired
 }
 
-export default RideConfirmation;
+export default RequestRide;
