@@ -3,11 +3,13 @@ import {
 	SET_USER_PHONENUMBER
 } from '../actions'
 
+// This will be returned as the initial state of the state subtree
 const initialState = {
     name: null,
 	phoneNumber: null
 };
 
+// This pure function defines how to take an action and the current state and return the new state
 const user = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_NAME:

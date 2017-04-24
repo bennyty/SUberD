@@ -4,6 +4,7 @@ import Details from '../routes/Details';
 import Profile from '../routes/Profile';
 import SignIn from '../routes/SignIn';
 
+// Configures the information for React to display the routes for navigating the app.
 export const routes = {
   getHomeRoute() {
     return {

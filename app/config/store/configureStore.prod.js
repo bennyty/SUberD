@@ -5,6 +5,7 @@ import createSagaMiddleware from 'redux-saga'
 
 const sagaMiddleware = createSagaMiddleware()
 
+// Same a dev environment without debugging modules
 const configureStore = preloadedState => {
 	const store = createStore(
 		rootReducer,

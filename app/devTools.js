@@ -2,8 +2,9 @@ import Reactotron from 'reactotron-react-native'
 import { reactotronRedux } from 'reactotron-redux'
 import sagaPlugin from 'reactotron-redux-saga'
 
+// External application that allows viewing of a React-redux application
 Reactotron
-  .configure() // we can use plugins here -- more on this later
+  .configure()
   .use(sagaPlugin())
   .use(reactotronRedux())
-  .connect() // let's connect!
+  .connect()
