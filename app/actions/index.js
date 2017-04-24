@@ -1,97 +1,54 @@
-import firebase from '../firebase';
+import { createAction } from 'redux-actions'
 
-export const REQUEST_RIDE  = "REQUEST_RIDE"
-export const REQUEST_QUEUE = "REQUEST_QUEUE"
-export const CREATE_EVENT  = "CREATE_EVENT"
-export const REMOVE_RIDE   = "REMOVE_RIDE"
+// Default exports are the constants.
+// Import as: import actionNames from '../actions'
+const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
+                      REQUEST_QUEUE: "REQUEST_QUEUE",
+                      CREATE_EVENT: "CREATE_EVENT",
+                      ADD_DRIVER: "ADD_DRIVER",
+                      REMOVE_RIDE: "REMOVE_RIDE",
+                      REQUEST_SIGN_IN: "REQUEST_SIGN_IN",
+                      RECEIVE_SIGN_IN: "RECEIVE_SIGN_IN",
+                      START_QUEUE_UPDATES: "START_QUEUE_UPDATES",
+                      STOP_QUEUE_UPDATES: "STOP_QUEUE_UPDATES",
+                      RECEIVE_QUEUE: "RECEIVE_QUEUE",
+                      RECEIVE_QUEUE_SIZE: "RECEIVE_QUEUE_SIZE",
+                      VERIFY_DATA: "VERIFY_DATA" ,
+                      GET_QUEUE_SIZE: "GET_QUEUE_SIZE",
+                      RECEIVE_VERIFICATION: "RECEIVE_VERIFICATION"
+					  }
+export default actionNames;
 
-export const addMessage = (msg) => ({
-    type: 'ADD_MESSAGE',
-    ...msg
-});
+// The follow is a list of 'actionCreators': Exported factories that return a
+// Flux Standard Action: (https://github.com/acdlite/flux-standard-action) using the module:
+// redux-actions:        (https://github.com/acdlite/redux-actions)
 
-export const sendMessage = (text, user) => ({
-        type: 'SEND_MESSAGE',
-        text,
-        user
-});
+export const requestSignIn     = createAction(actionNames.REQUEST_SIGN_IN)
+export const startQueueUpdates = createAction(actionNames.START_QUEUE_UPDATES)
+export const stopQueueUpdates  = createAction(actionNames.STOP_QUEUE_UPDATES)
+export const receiveSignIn     = createAction(actionNames.RECEIVE_SIGN_IN)
+export const receiveQueue      = createAction(actionNames.RECEIVE_QUEUE, null , () => ({
+	receivedAt: Date.now()
+}))
 
-export const startFetchingMessages = () => ({
-    type: 'START_FETCHING_MESSAGES'
-});
+export const receiveQueueSize      = createAction(actionNames.RECEIVE_QUEUE_SIZE, (payload) => ({
+	...payload
+}))
 
-export const receivedMessages = () => ({
-    type: 'RECEIVED_MESSAGES',
-    receivedAt: Date.now()
-});
+export const receiveVerification      = createAction(actionNames.RECEIVE_VERIFICATION, (payload) => ({
+	...payload
+}))
 
-export const fetchMessages = () => {
-    return function (dispatch) {
-        dispatch(startFetchingMessages());
+export const requestRide       = createAction(actionNames.REQUEST_RIDE)
+export const removeRide        = createAction(actionNames.REMOVE_RIDE)
+export const requestQueue      = createAction(actionNames.REQUEST_QUEUE)
+export const verifyData        = createAction(actionNames.VERIFY_DATA)
+export const addDriver         = createAction(actionNames.ADD_DRIVER)
+export const getQueueSize      = createAction(actionNames.GET_QUEUE_SIZE)
 
-        firebase.database()
-                .ref('messages')
-                .on('value', (snapshot) => {
-                    // gets around Redux panicking about actions in reducers
-                    setTimeout(() => {
-                        const messages = snapshot.val() || [];
-
-                        dispatch(receiveMessages(messages))
-                    }, 0);
-                });
-    }
-}
-
-export const receiveMessages = (messages) => {
-    return function (dispatch) {
-        Object.values(messages).forEach(msg => dispatch(addMessage(msg)));
-
-        dispatch(receivedMessages());
-    }
-}
-
-export const updateMessagesHeight = (event) => {
-    const layout = event.nativeEvent.layout;
-
-    return {
-        type: 'UPDATE_MESSAGES_HEIGHT',
-        height: layout.height
-    }
-}
-
-
-
-//
-// User actions
-//
-
-export const setUserName = (name) => ({
-    type: 'SET_USER_NAME',
-    name
-});
-
-export const setUserAvatar = (avatar) => ({
-    type: 'SET_USER_AVATAR',
-    avatar: avatar && avatar.length > 0 ? avatar : 'https://abs.twimg.com/sticky/default_profile_images/default_profile_3_400x400.png'
-});
-
-export const login = () => {
-    return function (dispatch) {
-        dispatch(startAuthorizing());
-
-        firebase.auth()
-                .signInAnonymously()
-                .then(() => {
-                    dispatch(userAuthorized());
-                    dispatch(fetchMessages());
-                });
-    }
-}
-
-export const startAuthorizing = () => ({
-    type: 'USER_START_AUTHORIZING'
-});
-
-export const userAuthorized = () => ({
-    type: 'USER_AUTHORIZED'
-});
+export const createEvent = createAction(actionNames.CREATE_EVENT, (eventName, eventID) => ({
+	eventName,
+	eventID,
+	createdAt: Date.now()
+	//even password
+}));

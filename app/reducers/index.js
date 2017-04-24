@@ -1,12 +1,14 @@
-
 import { combineReducers } from 'redux';
 
-import chatroom from './chatroom';
+import queue from './queue';
 import user from './user';
 
+// Simply import the two sub reducers and compose them
 const rootReducer = combineReducers({
-    chatroom,
+    queue,
     user
 });
+
+const getUser = state => state.user
 
 export default rootReducer;

@@ -56,6 +56,8 @@ fastlane/screenshots
 # Created by https://www.gitignore.io/api/vim
 
 ### Vim ###
+# ctrl-space
+.cs_files
 # swap
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
