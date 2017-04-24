@@ -3,6 +3,7 @@ import actionNames from '../actions'
 import * as actionFactory from '../actions'
 import * as firebase from '../api';
 
+// Blocks and waits for an action then makes an asynchronous database call then handle the results.
 function * requestRide(action) {
 	try {
 		var { eventID } = action.payload
@@ -12,6 +13,7 @@ function * requestRide(action) {
 	}
 }
 
+// Blocks and waits for an action then makes an asynchronous database call then handle the results.
 function * addDriver(action) {
 	try {
 		var { eventID } = action.payload
@@ -21,6 +23,7 @@ function * addDriver(action) {
 	}
 }
 
+// Blocks and waits for an action then makes an asynchronous database call then handle the results.
 function * fetchQueue( action ) {
 	try {
 		var { eventID } = action.payload
@@ -33,6 +36,7 @@ function * fetchQueue( action ) {
 	}
 }
 
+// Blocks and waits for an action then makes an asynchronous database call then handle the results.
 function * getQueueSize( action ) {
 	try {
 		var { eventID } = action.payload
@@ -47,6 +51,7 @@ function * getQueueSize( action ) {
 	}
 }
 
+// Blocks and waits for an action then makes an asynchronous database call then handle the results.
 function * startSync(path, finishAction) {
 	try {
 		const updateChannel = firebase.createEventChannel(path)
@@ -67,6 +72,7 @@ function * startSync(path, finishAction) {
 	}
 }
 
+// Blocks and waits for an action then makes an asynchronous database call then handle the results.
 function * startRideSync(action) {
 	var { eventID, rideID } = action.payload
 	const path = "events/" + eventID + "/rides/" + ridesID
@@ -74,6 +80,7 @@ function * startRideSync(action) {
 	yield call(startSync, path, fun)
 }
 
+// Blocks and waits for an action then makes an asynchronous database call then handle the results.
 function * startQueueSync(action) {
 	var { eventID } = action.payload
 	const path = "events/" + eventID + "/rides"
@@ -98,6 +105,8 @@ function * verifyData(action) {
 }
 
 // *********************** Watchers *************************
+// Watchers wait for an action and then call their corresponding saga.
+// They can also intuitively sequence actions through the generator syntax.
 function * watchStartUpdates() {
 	try {
 		while(true) {

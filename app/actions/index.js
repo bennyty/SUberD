@@ -19,6 +19,10 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
 					  }
 export default actionNames;
 
+// The follow is a list of 'actionCreators': Exported factories that return a
+// Flux Standard Action: (https://github.com/acdlite/flux-standard-action) using the module:
+// redux-actions:        (https://github.com/acdlite/redux-actions)
+
 export const requestSignIn     = createAction(actionNames.REQUEST_SIGN_IN)
 export const startQueueUpdates = createAction(actionNames.START_QUEUE_UPDATES)
 export const stopQueueUpdates  = createAction(actionNames.STOP_QUEUE_UPDATES)

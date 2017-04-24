@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 
+// An easy place for non developers to update the paths to images
 const images = {
   logo: require('../images/rn-logo.png'),
   icons: {

@@ -17,6 +17,10 @@ import Wait from './layouts/Wait'
 const RouterWithRedux = connect()(Router)
 const store = configureStore()
 
+// Root of the whole application
+// Sets up the React-router and passes it the redux store.
+//
+// Lists the scenes that will be available in the application
 export default class App extends Component {
   render () {
     return (

@@ -1,8 +1,9 @@
 import firebase from './firebase'
 import { eventChannel, END } from 'redux-saga'
-// create a firebase database object
+// Create a firebase database object
 const database = firebase.database();
 
+// Create a redux-saga event channel that listens for the given type on the given path
 export function createEventChannel(path, type = 'value') {
     const listener = eventChannel(
         emit => {
@@ -17,7 +18,7 @@ export function createEventChannel(path, type = 'value') {
     return listener;
 };
 
-// create a function that inserts an item into the database
+// Create a function that inserts an item into the database
 export function push(path, item) {
     const newItemRef = database.ref(path).push();
     return newItemRef.set(item);
@@ -37,6 +38,7 @@ export function sync(path){
   return (resolve, reject) => {ref.on("value", resolve , reject)}
 }
 
+// Return a promise that resolves once the database returns the requested subtree
 export function getAll(path){
   var ref = database.ref(path);
   return new Promise( (resolve, reject) => {

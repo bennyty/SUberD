@@ -4,10 +4,11 @@ import createSagaMiddleware from 'redux-saga'
 import rootReducer from '../../reducers'
 import Reactotron from 'reactotron-react-native'
 
+// Register debugging middleware
 const sagaMonitor = Reactotron.createSagaMonitor()
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor })
-// const sagaMiddleware = createSagaMiddleware()
 
+// Create a function that will configure the initial state of the redux store
 const configureStore = preloadedState => {
   const store = Reactotron.createStore(
     rootReducer,
