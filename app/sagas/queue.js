@@ -15,7 +15,7 @@ function * requestRide(action) {
 function * removeRide(action) {
 	try {
 		var { eventID } = action.payload
-    ver { key } = action.payload
+    var { key } = action.payload
 		yield call( firebase.remove, "events/" + eventID + "/rides" + key,  action.payload)
 	} catch(e) {
 		alert(e)
@@ -25,7 +25,7 @@ function * removeRide(action) {
 function * removeDriver(action) {
 	try {
 		var { eventID } = action.payload
-    ver { key } = action.payload
+    var { key } = action.payload
 		yield call( firebase.remove, "events/" + eventID + "/driver" + key,  action.payload)
 	} catch(e) {
 		alert(e)

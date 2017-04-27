@@ -15,13 +15,13 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
                       RECEIVE_QUEUE_SIZE: "RECEIVE_QUEUE_SIZE",
                       VERIFY_DATA: "VERIFY_DATA" ,
                       GET_QUEUE_SIZE: "GET_QUEUE_SIZE",
-                      RECEIVE_VERIFICATION: "RECEIVE_VERIFICATION"
-                      REMOVE_DRIVER: "REMOVE_DRIVER",
+                      RECEIVE_VERIFICATION: "RECEIVE_VERIFICATION",
+                      REMOVE_DRIVER: "REMOVE_DRIVER"
 					  }
 export default actionNames;
 
-export const removeRide       = createAction(action.Names.REMOVE_RIDE)
-export const removeDriver      = createAction(action.Names.REMOVE_DRIVER)
+export const removeRide        = createAction(actionNames.REMOVE_RIDE)
+export const removeDriver      = createAction(actionNames.REMOVE_DRIVER)
 export const requestSignIn     = createAction(actionNames.REQUEST_SIGN_IN)
 export const startQueueUpdates = createAction(actionNames.START_QUEUE_UPDATES)
 export const stopQueueUpdates  = createAction(actionNames.STOP_QUEUE_UPDATES)
