@@ -15,7 +15,7 @@ function * requestRide(action) {
 function * addDriver(action) {
 	try {
 		var { eventID } = action.payload
-		yield call( firebase.push, "events/" + eventID + "/drivers",  action)
+		yield call( firebase.push, "events/" + eventID + "/drivers",  action.payload)
 	} catch(e) {
 		alert(e)
 	}
