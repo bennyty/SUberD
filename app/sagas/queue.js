@@ -12,6 +12,26 @@ function * requestRide(action) {
 	}
 }
 
+function * removeRide(action) {
+	try {
+		var { eventID } = action.payload
+    ver { key } = action.payload
+		yield call( firebase.remove, "events/" + eventID + "/rides" + key,  action.payload)
+	} catch(e) {
+		alert(e)
+	}
+}
+
+function * removeDriver(action) {
+	try {
+		var { eventID } = action.payload
+    ver { key } = action.payload
+		yield call( firebase.remove, "events/" + eventID + "/driver" + key,  action.payload)
+	} catch(e) {
+		alert(e)
+	}
+}
+
 function * addDriver(action) {
 	try {
 		var { eventID } = action.payload
@@ -135,10 +155,28 @@ function * watchRequestRide() {
 	}
 }
 
+function * watchRemoveDriver() {
+	try {
+		yield takeEvery(actionNames.REMOVE_DRIVER, removeDriver)
+	} catch (error) {
+		alert(error)
+	}
+}
+
+function * watchRemoveRide() {
+	try {
+		yield takeEvery(actionNames.REMOVE_RIDE, removeRide)
+	} catch (error) {
+		alert(error)
+	}
+}
+
 export default function* root() {
 	try {
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
+		yield fork(watchRemoveRide)
+		yield fork(watchRemoveDriver)
 		yield fork(watchAddDriver)
 		yield fork(watchRequestQueue)
 	} catch (error) {

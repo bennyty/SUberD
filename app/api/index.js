@@ -23,6 +23,11 @@ export function push(path, item) {
     return newItemRef.set(item);
 }
 
+export function remove(path) {
+    const newItemRef = database.ref(path).remove();
+    return newItemRef;
+}
+
 export function verifyData(path){
   var ref = database.ref(path);
   return new Promise( (resolve, reject) => {
