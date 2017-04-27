@@ -9,7 +9,7 @@ const mapDispatchToProps = (dispatch) => {
   	//Is called by the RequestRide class on the 'submit' button press
     onConfirmClick: (name, phoneNumber, startTime, endTime, maxRiders, descr, org, eventCode, eventPassword) => {
       dispatch(addDriver({eventID: eventCode, password: eventPassword, phoneNumber, name, maxRiders, carInformation: descr, status: 1}));
-      Actions.queue();
+      Actions.queue({eventID: eventCode});
     }
   }
 }
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
 //Connects the Ride Request page to a dispatcher which
 //can send actions out via the Factory
 const VisibleDriverConfirmation = connect(
-  mapDispatchToProps
+  null,mapDispatchToProps
 )(DriverConfirmation)
 
 export default VisibleDriverConfirmation

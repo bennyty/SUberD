@@ -44,7 +44,6 @@ class RideElement extends Component{
 class Queue extends Component {
   constructor(props) {
     super(props)
-    Reactotron.log({string:props})
     //Maps the ride information given from the props to a data structure
     //This ds is given to the ListView class to be displayed as a table
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -52,6 +51,10 @@ class Queue extends Component {
       dataSource: ds.cloneWithRows(props.rides),
       temp: ''
     }
+  }
+
+  componentDidMount(){
+    this.props.onStartQueue(this.props.eventID);
   }
 
   render() {
@@ -68,11 +71,6 @@ class Queue extends Component {
           <Text style={styles.estimate}>Number of Rides: {this.state.dataSource.getRowCount()}</Text>
           <Text style={styles.estimate}>Total Estimated Time: {this.state.dataSource.getRowCount() * 10} minutes</Text>
         </View>
-        <TouchableHighlight 
-        style = {styles.submit}
-        onPress = {onButtonClick}>
-          <Text> Render </Text>
-        </TouchableHighlight>
         {/*The table itself*/}
         <View style={styles.queueTable}>
           {/*Lists the information in rows, where each entry is displayed in its own RideElement*/}
@@ -88,6 +86,7 @@ class Queue extends Component {
 
 //Gives a strict definition to how the format of the input data(props) should be
 Queue.propTypes = {
+  eventID: PropTypes.string.isRequired,
   rides: PropTypes.arrayOf(PropTypes.shape({
     comment: PropTypes.string,
     numRiders: PropTypes.string.isRequired,
