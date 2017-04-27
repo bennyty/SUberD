@@ -9,6 +9,7 @@ const mapDispatchToProps = (dispatch) => {
   	//Is called by the RequestRide class on the 'submit' button press
     onConfirmClick: (name, phoneNumber, startTime, endTime, maxRiders, descr, org, eventCode, eventPassword) => {
       dispatch(addDriver({eventID: eventCode, password: eventPassword, phoneNumber, name, maxRiders, carInformation: descr, status: 1}));
+      setTimeout(function(){}, 3000);
       Actions.queue({eventID: eventCode});
     }
   }
