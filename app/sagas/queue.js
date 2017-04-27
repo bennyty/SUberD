@@ -15,8 +15,37 @@ function * requestRide(action) {
 	}
 }
 
+function * removeRide(action) {
+	try {
+		var { eventID } = action.payload
+    var { key } = action.payload
+    yield call( firebase.remove, "events/" + eventID + "/rides/" + key)
+	} catch(e) {
+		alert(e)
+	}
+}
+
+function * removeDriver(action) {
+	try {
+		var { eventID } = action.payload
+    var { key } = action.payload
+    yield call( firebase.remove, "events/" + eventID +"/drivers/" + key)
+	} catch(e) {
+		alert(e)
+	}
+}
+
 // Blocks and waits for an action then makes an asynchronous database call then handle the results.
 function * addDriver(action) {
+	try {
+		var { eventID } = action.payload
+		yield call( firebase.push, "events/" + eventID + "/drivers",  action.payload)
+	} catch(e) {
+		alert(e)
+	}
+}
+
+function * createEvent(action) {
 	try {
 		var { eventID } = action.payload
 		yield call( firebase.push, "events/" + eventID + "/drivers",  action.payload)
@@ -149,10 +178,37 @@ function * watchRequestRide() {
 	}
 }
 
+function * watchRemoveDriver() {
+	try {
+		yield takeEvery(actionNames.REMOVE_DRIVER, removeDriver)
+	} catch (error) {
+		alert(error)
+	}
+}
+
+function * watchRemoveRide() {
+	try {
+		yield takeEvery(actionNames.REMOVE_RIDE, removeRide)
+	} catch (error) {
+		alert(error)
+	}
+}
+
+function * watchCreateEvent() {
+	try {
+		yield takeEvery(actionNames.CREATE_EVENT, createEvent)
+	} catch (error) {
+		alert(error)
+	}
+}
+
 export default function* root() {
 	try {
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
+		yield fork(watchCreateEvent)
+		yield fork(watchRemoveRide)
+		yield fork(watchRemoveDriver)
 		yield fork(watchAddDriver)
 		yield fork(watchRequestQueue)
 	} catch (error) {

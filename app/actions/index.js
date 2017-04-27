@@ -15,10 +15,13 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
                       RECEIVE_QUEUE_SIZE: "RECEIVE_QUEUE_SIZE",
                       VERIFY_DATA: "VERIFY_DATA" ,
                       GET_QUEUE_SIZE: "GET_QUEUE_SIZE",
-                      RECEIVE_VERIFICATION: "RECEIVE_VERIFICATION"
+                      RECEIVE_VERIFICATION: "RECEIVE_VERIFICATION",
+                      REMOVE_DRIVER: "REMOVE_DRIVER"
 					  }
 export default actionNames;
 
+export const removeRide        = createAction(actionNames.REMOVE_RIDE)
+export const removeDriver      = createAction(actionNames.REMOVE_DRIVER)
 // The follow is a list of 'actionCreators': Exported factories that return a
 // Flux Standard Action: (https://github.com/acdlite/flux-standard-action) using the module:
 // redux-actions:        (https://github.com/acdlite/redux-actions)
@@ -40,16 +43,10 @@ export const receiveVerification      = createAction(actionNames.RECEIVE_VERIFIC
 }))
 
 export const requestRide       = createAction(actionNames.REQUEST_RIDE)
-export const removeRide        = createAction(actionNames.REMOVE_RIDE)
+export const createEvent       = createAction(actionNames.CREATE_EVENT)
 export const requestQueue      = createAction(actionNames.REQUEST_QUEUE)
 export const verifyData        = createAction(actionNames.VERIFY_DATA)
 export const addDriver         = createAction(actionNames.ADD_DRIVER)
 export const getQueueSize      = createAction(actionNames.GET_QUEUE_SIZE)
 
-export const createEvent = createAction(actionNames.CREATE_EVENT, (eventName, eventID) => ({
-	eventName,
-	eventID,
-	createdAt: Date.now()
-	//even password
-}));
 
