@@ -33,7 +33,7 @@ class DriverConfirmation extends Component {
         {/*onPress() calls the submitClick() function in the VisibleRideRequest class*/}
         <TouchableHighlight 
         style = {styles.submit}
-        onPress = {() => this.props.onConfirmClick(this.props.startTime, this.props.endTime, this.props.maxRiders, this.props.descr, this.props.org, this.props.eventCode, this.props.eventPassword)}>
+        onPress = {() => this.props.onConfirmClick(this.props.name, this.props.phoneNumber, this.props.startTime, this.props.endTime, this.props.maxRiders, this.props.descr, this.props.org, this.props.eventCode, this.props.eventPassword)}>
           <Text> Confirm </Text>
         </TouchableHighlight>
         <Text>Thank you and please drive safely :)</Text>
@@ -44,6 +44,8 @@ class DriverConfirmation extends Component {
 
 
 DriverConfirmation.propTypes = {
+  name: PropTypes.string.isRequired,
+  phoneNumber: PropTypes.string.isRequired,
   onConfirmClick: PropTypes.func.isRequired,
   startTime: PropTypes.string.isRequired,
   endTime: PropTypes.string.isRequired,

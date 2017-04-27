@@ -7,8 +7,8 @@ import {requestRide} from '../../actions'
 const mapDispatchToProps = (dispatch) => {
   return {
   	//Is called by the RequestRide class on the 'submit' button press
-    onConfirmClick: (startTime, endTime, maxRiders, descr, org, eventCode, eventPassword) => {
-      //dispatch(requestRide({eventId, phoneNumber, name, pickup, dropoff, numRiders, comment, status: 1}));
+    onConfirmClick: (name, phoneNumber, startTime, endTime, maxRiders, descr, org, eventCode, eventPassword) => {
+      dispatch(addDriver({eventID: eventCode, password: eventPassword, phoneNumber, name, maxRiders, carInformation: descr, status: 1}));
       Actions.queue();
     }
   }

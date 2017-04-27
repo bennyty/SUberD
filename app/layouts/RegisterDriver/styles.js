@@ -9,10 +9,13 @@ export default StyleSheet.create({
     	backgroundColor: '#72EB90',
   	},
   	submit: {
-      	backgroundColor: '#FFC900',
-      	padding: 10,
+      backgroundColor: '#FFC900',
+      padding: 10,
+      margin: 15,
+      flex: .05
   	},
   	heading: {
+      flex: .1,
     	justifyContent:'flex-start',
     	flexDirection: 'row',
   	},
@@ -32,6 +35,6 @@ export default StyleSheet.create({
     	justifyContent: 'flex-start',
     	backgroundColor: 'powderblue',
     	width: 300,
-    	height: 350,
+    	flex: .75
   	},
 });
