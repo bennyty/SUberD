@@ -2,12 +2,14 @@ import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions'
 import actionNames from '../actions';
 
+// This will be returned as the initial state of the state subtree
 const initialState = {
     isFetching: false,
     lastFetched: null,
 	rides: []
 }
 
+// This pure function defines how to take an action and the current state and return the new state
 const queue = handleActions({
 	[actionNames.REQUEST_RIDE]: {
 		next(state, action) {
@@ -28,7 +30,8 @@ const queue = handleActions({
 }, initialState);
 
 
-// Replaced by handleActions from redux-actions
+// Replaced above by handleActions from redux-actions
+
 // const queue = (state = initialState, action) => {
 //     switch (action.type) {
 //         case actionNames.REQUEST_RIDE:

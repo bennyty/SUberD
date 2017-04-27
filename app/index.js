@@ -13,15 +13,23 @@ import RiderMain from './layouts/RiderMain'
 import EditRide from './layouts/EditRide'
 import RideEditConfirmation from './layouts/RideEditConfirmation'
 import Wait from './layouts/Wait'
+import RegisterDriver from './layouts/RegisterDriver'
+import DriverConfirmation from './layouts/DriverConfirmation'
 
 const RouterWithRedux = connect()(Router)
 const store = configureStore()
 
+// Root of the whole application
+// Sets up the React-router and passes it the redux store.
+//
+// Lists the scenes that will be available in the application
 export default class App extends Component {
   render () {
     return (
       <Provider store={store}>
-        <RouterWithRedux> 
+        <RouterWithRedux>
+          <Scene key='registerDriver' component={RegisterDriver} title='Register as a Driver'/>
+          <Scene key='driverConfirmation' component={DriverConfirmation} title='Driver Confirmation'/>
           <Scene key='riderMain' component={RiderMain} title='Home'/>
           <Scene key='requestRide' component={RequestRide} title='Request a Ride'/>
           <Scene key='register' component={Register} title='Register'/>
