@@ -45,7 +45,6 @@ function * createEvent(action) {
 	try {
 		var { eventID } = action.payload
 		yield call( firebase.push, "events/" + eventID + "/drivers",  action.payload)
-		yield call( firebase.push, "events/" + eventID + "/riders",  action.payload)
 	} catch(e) {
 		alert(e)
 	}
