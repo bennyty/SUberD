@@ -54,7 +54,7 @@ class Queue extends Component {
   }
 
   componentDidMount(){
-   /* this.props.onStartQueue(this.props.eventID);*/
+   this.props.onStartQueue(this.props.eventID);
   }
 
   render() {

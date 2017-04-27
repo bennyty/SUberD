@@ -12,9 +12,8 @@ const mapDispatchToProps = (dispatch) => {
       Actions.editRide({eventID: eventID, pickup: pickup, dropoff: dropoff, numRiders: numRiders, comment: comment});
     },
     onCancelClick: (rideID) => {
-    	alert("Cancelled Ride");
-      //dispatch(removeRide({}));
-      Actions.queue();
+      dispatch(removeRide({}));
+      Actions.riderMain();
     }
   }
 }
