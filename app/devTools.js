@@ -3,6 +3,7 @@ import { reactotronRedux } from 'reactotron-redux'
 import sagaPlugin from 'reactotron-redux-saga'
 
 // External application that allows viewing of a React-redux application
+console.disableYellowBox = true;
 Reactotron
   .configure()
   .use(sagaPlugin())
