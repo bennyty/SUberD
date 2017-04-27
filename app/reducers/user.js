@@ -5,8 +5,8 @@ import {
 
 // This will be returned as the initial state of the state subtree
 const initialState = {
-    name: null,
-	phoneNumber: null
+    name: "Curran Kalia",
+	phoneNumber: "6312523291"
 };
 
 // This pure function defines how to take an action and the current state and return the new state

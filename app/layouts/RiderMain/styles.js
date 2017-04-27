@@ -28,5 +28,6 @@ export default StyleSheet.create({
   submit: {
       backgroundColor: '#FFC900',
       padding: 10,
+      margin: 15
   }
 });

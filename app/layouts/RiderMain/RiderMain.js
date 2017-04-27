@@ -35,11 +35,18 @@ class RiderMain extends Component {
         </View>
         {/*Button for submitting the info*/}
         {/*onPress() calls the submitClick() function in the VisibleRideRequest class*/}
-        <TouchableHighlight 
-        style = {styles.submit}
-        onPress = {() => this.props.onRequestRideClick(this.state.eventID)}>
-          <Text> Request Ride </Text>
-        </TouchableHighlight>
+        <View>
+          <TouchableHighlight 
+          style = {styles.submit}
+          onPress = {() => this.props.onRequestRideClick(this.state.eventID)}>
+            <Text> Request Ride </Text>
+          </TouchableHighlight>
+          <TouchableHighlight 
+          style = {styles.submit}
+          onPress = {() => this.props.onDriverClick()}>
+            <Text> Register as a Driver </Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }

@@ -16,12 +16,17 @@ const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
                       VERIFY_DATA: "VERIFY_DATA" ,
                       GET_QUEUE_SIZE: "GET_QUEUE_SIZE",
                       RECEIVE_VERIFICATION: "RECEIVE_VERIFICATION",
-                      REMOVE_DRIVER: "REMOVE_DRIVER"
+                      REMOVE_DRIVER: "REMOVE_DRIVER",
+                      SET_USER_NAME: "SET_USER_NAME",
+                      SET_USER_PHONENUMBER: "SET_USER_PHONENUMBER"
 					  }
 export default actionNames;
 
-export const removeRide        = createAction(actionNames.REMOVE_RIDE)
-export const removeDriver      = createAction(actionNames.REMOVE_DRIVER)
+export const removeRide         = createAction(actionNames.REMOVE_RIDE)
+export const removeDriver       = createAction(actionNames.REMOVE_DRIVER)
+
+export const setUserName        = createAction(actionNames.SET_USER_NAME)
+export const setUserPhoneNumber = createAction(actionNames.SET_USER_PHONENUMBER)
 // The follow is a list of 'actionCreators': Exported factories that return a
 // Flux Standard Action: (https://github.com/acdlite/flux-standard-action) using the module:
 // redux-actions:        (https://github.com/acdlite/redux-actions)

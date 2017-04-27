@@ -28,12 +28,12 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <RouterWithRedux>
+        <Scene key='register' component={Register} title='Register'/>
           <Scene key='queue' component={Queue} title='Ride Queue'/>
           <Scene key='riderMain' component={RiderMain} title='Home'/>
           <Scene key='requestRide' component={RequestRide} title='Request a Ride'/>
           <Scene key='registerDriver' component={RegisterDriver} title='Register as a Driver'/>
           <Scene key='driverConfirmation' component={DriverConfirmation} title='Driver Confirmation'/>
-          <Scene key='register' component={Register} title='Register'/>
           <Scene key='verification' component={Verification} title='Verification'/>
           <Scene key='ride' component={Ride} title='Ride'/>
           <Scene key='rideConfirmation' component={RideConfirmation} title='Ride Confirmation'/>

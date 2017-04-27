@@ -49,14 +49,10 @@ class Queue extends Component {
   }
 
   componentDidMount(){
-    this.props.onStartQueue("1111");
+    this.props.onStartQueue(this.props.eventID);
   }
 
   render() {
-
-    const onButtonClick = () => {
-      Actions.queue();
-    }
 
     return (
       <View style={styles.container}>

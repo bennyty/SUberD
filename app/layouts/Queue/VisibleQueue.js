@@ -8,7 +8,11 @@ import {stopQueueUpdates} from '../../actions'
 
 const mapStateToProps = (state) => {
 	const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-  	datasource = ds.cloneWithRows(state.queue.rides)
+	datasource = null;
+	if(state.queue.rides == null)
+		datasource = ds.cloneWithRows([]);
+	else
+  		datasource = ds.cloneWithRows(state.queue.rides);
   	return {
     	dataSource: datasource
   	}

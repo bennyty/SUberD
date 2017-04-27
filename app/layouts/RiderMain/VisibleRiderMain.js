@@ -15,6 +15,9 @@ const mapDispatchToProps = (dispatch) => {
       		Actions.requestRide({eventID: eventID});
       	else
       		Actions.riderMain();
+    },
+    onDriverClick: () => {
+      Actions.registerDriver();
     }
   }
 }

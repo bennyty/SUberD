@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     onCancelClick: (rideID, eventID) => {
       Reactotron.log(eventID);
       Reactotron.log(rideID);
-      dispatch(removeRide({eventID, key: rideID}));
+      dispatch(removeRide({eventID: eventID, key: rideID}));
       Actions.queue(eventID);
     }
   }
