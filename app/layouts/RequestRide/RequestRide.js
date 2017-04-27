@@ -10,7 +10,6 @@ import styles from './styles';
 import {Actions} from 'react-native-router-flux'
 
 import { dispatch } from 'redux'
-import { requestRide } from '../../actions'
 
 class RequestRide extends Component {
   constructor() {

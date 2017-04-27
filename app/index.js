@@ -13,6 +13,8 @@ import RiderMain from './layouts/RiderMain'
 import EditRide from './layouts/EditRide'
 import RideEditConfirmation from './layouts/RideEditConfirmation'
 import Wait from './layouts/Wait'
+import RegisterDriver from './layouts/RegisterDriver'
+import DriverConfirmation from './layouts/DriverConfirmation'
 
 const RouterWithRedux = connect()(Router)
 const store = configureStore()
@@ -22,6 +24,8 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <RouterWithRedux>
+          <Scene key='registerDriver' component={RegisterDriver} title='Register as a Driver'/>
+          <Scene key='driverConfirmation' component={DriverConfirmation} title='Driver Confirmation'/>
           <Scene key='riderMain' component={RiderMain} title='Home'/>
           <Scene key='requestRide' component={RequestRide} title='Request a Ride'/>
           <Scene key='register' component={Register} title='Register'/>
