@@ -39,15 +39,10 @@ export const receiveVerification      = createAction(actionNames.RECEIVE_VERIFIC
 }))
 
 export const requestRide       = createAction(actionNames.REQUEST_RIDE)
+export const createEvent       = createAction(actionNames.CREATE_EVENT)
 export const requestQueue      = createAction(actionNames.REQUEST_QUEUE)
 export const verifyData        = createAction(actionNames.VERIFY_DATA)
 export const addDriver         = createAction(actionNames.ADD_DRIVER)
 export const getQueueSize      = createAction(actionNames.GET_QUEUE_SIZE)
 
-export const createEvent = createAction(actionNames.CREATE_EVENT, (eventName, eventID) => ({
-	eventName,
-	eventID,
-	createdAt: Date.now()
-	//even password
-}));
 

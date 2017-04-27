@@ -41,6 +41,16 @@ function * addDriver(action) {
 	}
 }
 
+function * createEvent(action) {
+	try {
+		var { eventID } = action.payload
+		yield call( firebase.push, "events/" + eventID + "/drivers",  action.payload)
+		yield call( firebase.push, "events/" + eventID + "/riders",  action.payload)
+	} catch(e) {
+		alert(e)
+	}
+}
+
 function * fetchQueue( action ) {
 	try {
 		var { eventID } = action.payload
@@ -171,10 +181,19 @@ function * watchRemoveRide() {
 	}
 }
 
+function * watchCreateEvent() {
+	try {
+		yield takeEvery(actionNames.CREATE_EVENT, createEvent)
+	} catch (error) {
+		alert(error)
+	}
+}
+
 export default function* root() {
 	try {
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
+		yield fork(watchCreateEvent)
 		yield fork(watchRemoveRide)
 		yield fork(watchRemoveDriver)
 		yield fork(watchAddDriver)
