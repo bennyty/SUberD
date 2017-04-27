@@ -7,26 +7,26 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#72EB90',
-  },
-  instruction: {
-    fontSize: 20,
-    textAlign: 'left',
-  },
-  inp: {
-      margin: 15,
-      height: 40,
-      borderColor: 'grey',
-      borderWidth: 1,
-      backgroundColor: 'white',
-   },
-  inputs: {
-    justifyContent: 'flex-start',
-    backgroundColor: 'powderblue',
-    width: 300,
-    height: 70,
-  },
-  submit: {
-      backgroundColor: '#FFC900',
-      padding: 10,
   }
+  // instruction: {
+  //   fontSize: 20,
+  //   textAlign: 'left',
+  // },
+  // inp: {
+  //     margin: 15,
+  //     height: 40,
+  //     borderColor: 'grey',
+  //     borderWidth: 1,
+  //     backgroundColor: 'white',
+  //  },
+  // inputs: {
+  //   justifyContent: 'flex-start',
+  //   backgroundColor: 'powderblue',
+  //   width: 300,
+  //   height: 70,
+  // },
+  // submit: {
+  //     backgroundColor: '#FFC900',
+  //     padding: 10,
+  // }
 });
