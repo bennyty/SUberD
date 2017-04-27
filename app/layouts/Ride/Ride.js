@@ -45,7 +45,7 @@ class Ride extends Component {
 
   render() {
 
-    const onPickupClick = () => {
+    /*const onPickupClick = () => {
       this.state.inRoute = true;
     }
     const onCompleteClick = () => {
@@ -56,42 +56,7 @@ class Ride extends Component {
     }
     const onCancelClick = () => {
       
-    }
-
-    function DisplayButtons(props) {
-      if (props.inRoute){
-        return(
-          <View>
-            <TouchableHighlight 
-              onPress = {() => onCompleteClick()}
-              style = {styles.pickup}>
-              <Text>Ride Complete!</Text>
-            </TouchableHighlight>
-            <TouchableHighlight 
-              onPress = {() => onCancelClick()}
-              style = {styles.deny}>
-              <Text>Cancel Ride</Text>
-            </TouchableHighlight>
-          </View>
-        );
-      }
-      else{
-        return(
-          <View>
-            <TouchableHighlight 
-              onPress = {() => onPickupClick()}
-              style = {styles.pickup}>
-              <Text>Pick up</Text>
-            </TouchableHighlight>
-            <TouchableHighlight 
-              onPress = {() => onDenyClick()}
-              style = {styles.deny}>
-              <Text>Deny :(</Text>
-            </TouchableHighlight>
-          </View>
-        );
-      }
-    }
+    }*/
 
     return (
       <View style={styles.container}>
@@ -123,7 +88,16 @@ class Ride extends Component {
         </View>
         <View style={styles.buttons}>
           {/*Button to choose to pick up ride*/}
-          <DisplayButtons inRoute={this.state.inRoute}/>
+          <TouchableHighlight 
+            onPress = {() => onPickupClick()}
+            style = {styles.pickup}>
+            <Text>Pick up</Text>
+          </TouchableHighlight>
+          <TouchableHighlight 
+            onPress = {() => this.props.onCancelClick(this.props.all.rideID, this.props.all.eventID)}
+            style = {styles.deny}>
+            <Text>Deny :(</Text>
+          </TouchableHighlight>
         </View>
       </View>
     );

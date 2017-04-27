@@ -17,6 +17,13 @@ export default StyleSheet.create({
     fontSize: 16,
     textAlign: 'left',
   },
+  inp: {
+      margin: 15,
+      height: 40,
+      borderColor: 'grey',
+      borderWidth: 1,
+      backgroundColor: 'white',
+   },
   queueTable: {
     width: 300,
     height: 600,

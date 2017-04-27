@@ -8,8 +8,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
   	//Is called by the RequestRide class on the 'submit' button press
     onConfirmClick: (eventID, phoneNumber, name, pickup, dropoff, numRiders, comment) => {
-      dispatch(requestRide({eventId, phoneNumber, name, pickup, dropoff, numRiders, comment, status: 1}));
-      Actions.wait({eventID: eventID, phoneNumber: phoneNumber, name: name, pickup: pickup, dropoff: dropoff, numRiders: numRiders, comment: comment});
+      rideKey = dispatch(requestRide({eventID, phoneNumber, name, pickup, dropoff, numRiders, comment, status: 1}));
+      Reactotron.log(JSON.stringify(rideKey));
+      Actions.wait({eventID: eventID, rideKey: rideKey, phoneNumber: phoneNumber, name: name, pickup: pickup, dropoff: dropoff, numRiders: numRiders, comment: comment});
     }
   }
 }

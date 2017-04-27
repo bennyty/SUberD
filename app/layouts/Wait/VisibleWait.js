@@ -11,8 +11,9 @@ const mapDispatchToProps = (dispatch) => {
       //dispatch(requestRide({eventId, phoneNumber, name, pickup, dropoff, numRiders, comment}));
       Actions.editRide({eventID: eventID, pickup: pickup, dropoff: dropoff, numRiders: numRiders, comment: comment});
     },
-    onCancelClick: (rideID) => {
-      dispatch(removeRide({}));
+    onCancelClick: (eventID, rideKey) => {
+      Reactotron.log(rideKey);
+      dispatch(removeRide({eventID, key: rideKey}));
       Actions.riderMain();
     }
   }

@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import Ride from './Ride'
 import Reactotron from 'reactotron-react-native'
 import {Actions} from 'react-native-router-flux'
+import {removeRide} from '../../actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -11,9 +12,11 @@ const mapDispatchToProps = (dispatch) => {
       	//dispatch(toggleTodo(pickup, dropoff, num_passengers, comment))
     },
     //Is called by the Ride class on the 'cancel' button press
-    onCancelClick: (rideID) => {
-    	alert("Cancel");
-      	//dispatch(toggleTodo(pickup, dropoff, num_passengers, comment))
+    onCancelClick: (rideID, eventID) => {
+      Reactotron.log(eventID);
+      Reactotron.log(rideID);
+      dispatch(removeRide({eventID, key: rideID}));
+      Actions.queue(eventID);
     }
   }
 }
@@ -21,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 //Connects the Ride Request page to a dispatcher which
 //can send actions out via the Factory
 const VisibleRide = connect(
-  mapDispatchToProps
+  null,mapDispatchToProps
 )(Ride)
 
 export default VisibleRide

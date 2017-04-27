@@ -40,7 +40,7 @@ class Wait extends Component {
             <Text> Edit Ride Information </Text>
           </TouchableHighlight>
           <TouchableHighlight 
-            onPress = {() => this.props.onCancelClick(this.props.rideID)}
+            onPress = {() => this.props.onCancelClick(this.props.eventID, this.props.rideKey)}
             style = {styles.deny}>
             <Text>Cancel</Text>
           </TouchableHighlight>
@@ -54,6 +54,7 @@ Wait.propTypes = {
   onEditClick: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func.isRequired,
   eventID: PropTypes.string.isRequired,
+  rideKey: PropTypes.string.isRequired,
   pickup: PropTypes.string.isRequired,
   dropoff: PropTypes.string.isRequired,
   numRiders: PropTypes.string.isRequired,

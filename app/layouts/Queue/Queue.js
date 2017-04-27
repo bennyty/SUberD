@@ -33,7 +33,7 @@ class RideElement extends Component{
           <View style={styles.elementRow}>
             <Text>{this.props.pickup}</Text>
             <Text>{this.props.numRiders}</Text>
-          </View>
+          </View>        
         </View>
       </TouchableHighlight>
     );
@@ -46,15 +46,10 @@ class Queue extends Component {
     super(props)
     //Maps the ride information given from the props to a data structure
     //This ds is given to the ListView class to be displayed as a table
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(props.rides),
-      temp: ''
-    }
   }
 
   componentDidMount(){
-   this.props.onStartQueue(this.props.eventID);
+    this.props.onStartQueue("1111");
   }
 
   render() {
@@ -68,14 +63,14 @@ class Queue extends Component {
         <View style={{height: 100}}></View>
         {/*Header on the top of the table*/}
         <View style={styles.estimates}>
-          <Text style={styles.estimate}>Number of Rides: {this.state.dataSource.getRowCount()}</Text>
-          <Text style={styles.estimate}>Total Estimated Time: {this.state.dataSource.getRowCount() * 10} minutes</Text>
+          <Text style={styles.estimate}>Number of Rides: {this.props.dataSource.getRowCount()}</Text>
+          <Text style={styles.estimate}>Total Estimated Time: {this.props.dataSource.getRowCount() * 10} minutes</Text>
         </View>
         {/*The table itself*/}
         <View style={styles.queueTable}>
           {/*Lists the information in rows, where each entry is displayed in its own RideElement*/}
           <ListView
-            dataSource={this.state.dataSource}
+            dataSource={this.props.dataSource}
             renderRow={(rowData, sectionId, rowId) => <RideElement secId={sectionId} index={rowId} {...rowData} />}
             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />} />
         </View>
@@ -87,13 +82,6 @@ class Queue extends Component {
 //Gives a strict definition to how the format of the input data(props) should be
 Queue.propTypes = {
   eventID: PropTypes.string.isRequired,
-  rides: PropTypes.arrayOf(PropTypes.shape({
-    comment: PropTypes.string,
-    numRiders: PropTypes.string.isRequired,
-    pickup: PropTypes.string.isRequired,
-    dropoff: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
-  }).isRequired).isRequired
 }
 
 export default Queue;

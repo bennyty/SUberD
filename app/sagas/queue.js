@@ -1,4 +1,5 @@
 import { cancel, cancelled, fork, take, takeEvery, takeLast, call, put } from 'redux-saga/effects'
+import {delay} from 'redux-saga'
 import actionNames from '../actions'
 import * as actionFactory from '../actions'
 import Reactotron from 'reactotron-react-native'
@@ -58,18 +59,21 @@ function * startSync(path, finishAction) {
 		const updateChannel = firebase.createEventChannel(path)
 		while(true) {
 			const rides = yield take(updateChannel)
+			Reactotron.log(rides);
 			var result = [];
-			for(var i in rides)
+			for(var i in rides){
+				rides[i]["rideID"] = i;
 			    result.push(rides[i]);
+			}
 			yield put(finishAction({rides: result}))
 		}
 	} catch (error) {
-		yield put(finishAction(error))
 		alert(error)
+		yield put(finishAction(error))
 	} finally {
 		if (yield cancelled()) {
-		  updateChannel.close()
-		}
+	  		updateChannel.close()
+	  	}
 	}
 }
 
