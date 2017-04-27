@@ -27,12 +27,12 @@ class RideElement extends Component{
           {/*First row of data*/}
           <View style={styles.elementRow}>
             <Text>{this.props.dropoff}</Text>
-            <Text>{this.props.user.first_name} {this.props.user.last_name}</Text>
+            <Text>{this.props.name}</Text>
           </View>
           {/*Second row*/}
           <View style={styles.elementRow}>
             <Text>{this.props.pickup}</Text>
-            <Text>{this.props.num_passengers}</Text>
+            <Text>{this.props.numRiders}</Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -49,11 +49,17 @@ class Queue extends Component {
     //This ds is given to the ListView class to be displayed as a table
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(props.rides)
+      dataSource: ds.cloneWithRows(props.rides),
+      temp: ''
     }
   }
 
   render() {
+
+    const onButtonClick = () => {
+      Actions.queue();
+    }
+
     return (
       <View style={styles.container}>
         <View style={{height: 100}}></View>
@@ -62,6 +68,11 @@ class Queue extends Component {
           <Text style={styles.estimate}>Number of Rides: {this.state.dataSource.getRowCount()}</Text>
           <Text style={styles.estimate}>Total Estimated Time: {this.state.dataSource.getRowCount() * 10} minutes</Text>
         </View>
+        <TouchableHighlight 
+        style = {styles.submit}
+        onPress = {onButtonClick}>
+          <Text> Render </Text>
+        </TouchableHighlight>
         {/*The table itself*/}
         <View style={styles.queueTable}>
           {/*Lists the information in rows, where each entry is displayed in its own RideElement*/}
@@ -79,12 +90,10 @@ class Queue extends Component {
 Queue.propTypes = {
   rides: PropTypes.arrayOf(PropTypes.shape({
     comment: PropTypes.string,
-    num_passengers: PropTypes.string.isRequired,
+    numRiders: PropTypes.string.isRequired,
     pickup: PropTypes.string.isRequired,
     dropoff: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-      first_name: PropTypes.string.isRequired,
-      last_name: PropTypes.string.isRequired}).isRequired
+    name: PropTypes.string.isRequired
   }).isRequired).isRequired
 }
 

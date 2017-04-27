@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
 //Connects the Ride Request page to a dispatcher which
 //can send actions out via the Factory
 const VisibleRideConfirmation = connect(
-  mapDispatchToProps
+  null, mapDispatchToProps
 )(RideConfirmation)
 
 export default VisibleRideConfirmation

@@ -5,63 +5,51 @@ import { createAction } from 'redux-actions'
 const actionNames = { REQUEST_RIDE: "REQUEST_RIDE",
                       REQUEST_QUEUE: "REQUEST_QUEUE",
                       CREATE_EVENT: "CREATE_EVENT",
-					  REMOVE_RIDE: "REMOVE_RIDE",
-					  RECEIVE_QUEUE: "RECEIVE_QUEUE"
+                      ADD_DRIVER: "ADD_DRIVER",
+                      REMOVE_RIDE: "REMOVE_RIDE",
+                      REQUEST_SIGN_IN: "REQUEST_SIGN_IN",
+                      RECEIVE_SIGN_IN: "RECEIVE_SIGN_IN",
+                      START_QUEUE_UPDATES: "START_QUEUE_UPDATES",
+                      STOP_QUEUE_UPDATES: "STOP_QUEUE_UPDATES",
+                      RECEIVE_QUEUE: "RECEIVE_QUEUE",
+                      RECEIVE_QUEUE_SIZE: "RECEIVE_QUEUE_SIZE",
+                      VERIFY_DATA: "VERIFY_DATA" ,
+                      GET_QUEUE_SIZE: "GET_QUEUE_SIZE",
+                      RECEIVE_VERIFICATION: "RECEIVE_VERIFICATION"
 					  }
 export default actionNames;
 
-export const receiveQueue = createAction(actionNames.RECEIVE_QUEUE)
+// The follow is a list of 'actionCreators': Exported factories that return a
+// Flux Standard Action: (https://github.com/acdlite/flux-standard-action) using the module:
+// redux-actions:        (https://github.com/acdlite/redux-actions)
 
-export const requestRide = (pickup, dropoff, numRiders, comment, user) => {
-	return createAction(actionNames.REQUEST_RIDE,
-						(pickup, dropoff, numRiders, comment, user) => ({pickup, dropoff, numRiders, comment, user}))
-};
+export const requestSignIn     = createAction(actionNames.REQUEST_SIGN_IN)
+export const startQueueUpdates = createAction(actionNames.START_QUEUE_UPDATES)
+export const stopQueueUpdates  = createAction(actionNames.STOP_QUEUE_UPDATES)
+export const receiveSignIn     = createAction(actionNames.RECEIVE_SIGN_IN)
+export const receiveQueue      = createAction(actionNames.RECEIVE_QUEUE, null , () => ({
+	receivedAt: Date.now()
+}))
 
-export const createEvent = (eventName, eventID) => ({
-	type: CREATE_EVENT,
+export const receiveQueueSize      = createAction(actionNames.RECEIVE_QUEUE_SIZE, (payload) => ({
+	...payload
+}))
+
+export const receiveVerification      = createAction(actionNames.RECEIVE_VERIFICATION, (payload) => ({
+	...payload
+}))
+
+export const requestRide       = createAction(actionNames.REQUEST_RIDE)
+export const removeRide        = createAction(actionNames.REMOVE_RIDE)
+export const requestQueue      = createAction(actionNames.REQUEST_QUEUE)
+export const verifyData        = createAction(actionNames.VERIFY_DATA)
+export const addDriver         = createAction(actionNames.ADD_DRIVER)
+export const getQueueSize      = createAction(actionNames.GET_QUEUE_SIZE)
+
+export const createEvent = createAction(actionNames.CREATE_EVENT, (eventName, eventID) => ({
 	eventName,
 	eventID,
 	createdAt: Date.now()
 	//even password
-});
+}));
 
-export const removeRider = () => ({
-	type: REMOVE_RIDE,
-	//removes the rider by that name from the queue, send event ID as well
-});
-
-export const requestQueue = (eventID) => ({
-	type: actionNames.REQUEST_QUEUE,
-	payload: { eventID: eventID }
-});
-
-
-//get height to mainitain scroll at top/bottom
-export const updateQueueHeight = (event) => {
-	const layout = event.nativeEvent.layout;
-	return {
-		type: 'UPDATE_MESSAGES_HEIGHT',
-		height: layout.height
-	}
-};
-
-//login actions
-export const login = () => {
-    return function (dispatch) {
-        dispatch(startAuthorizing());
-        firebase.auth()
-                .signInAnonymously()
-                .then(() => {
-                    dispatch(userAuthorized());
-                    dispatch(fetchMessages());
-                });
-    }
-}
-
-export const startAuthorizing = () => ({
-    type: 'USER_START_AUTHORIZING'
-});
-
-export const userAuthorized = () => ({
-    type: 'USER_AUTHORIZED'
-});
