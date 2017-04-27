@@ -119,6 +119,14 @@ function * watchRequestQueue() {
 	}
 }
 
+function * watchAddDriver() {
+	try {
+		yield takeEvery(actionNames.ADD_DRIVER, addDriver)
+	} catch (error) {
+		alert(error)
+	}
+}
+
 function * watchRequestRide() {
 	try {
 		yield takeEvery(actionNames.REQUEST_RIDE, requestRide)
@@ -131,6 +139,7 @@ export default function* root() {
 	try {
 		yield fork(watchStartUpdates)
 		yield fork(watchRequestRide)
+		yield fork(watchAddDriver)
 		yield fork(watchRequestQueue)
 	} catch (error) {
 		alert(error)
