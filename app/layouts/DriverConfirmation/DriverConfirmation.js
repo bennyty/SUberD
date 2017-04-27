@@ -18,7 +18,8 @@ class DriverConfirmation extends Component {
       <View style={styles.container}>
         <View></View>
         <View>
-          <Text>Your driving information</Text>
+          <Text style={styles.header}>Your driving information</Text>
+          <Text></Text>
           {/*Input boxes for each requested field*/}
           <Text>From: {this.props.startTime}</Text>
           <Text>To: {this.props.endTime}</Text>
@@ -26,8 +27,8 @@ class DriverConfirmation extends Component {
           <Text>That holds {this.props.maxRiders} other passengers.</Text>
         </View>
         <View>
-          <Text>Your event code: {this.props.eventCode}</Text>
-          <Text>Your event password: {this.props.eventPassword}</Text>
+          <Text style={styles.eventInfo}>Your event code: {this.props.eventCode}</Text>
+          <Text style={styles.eventInfo}>Your event password: {this.props.eventPassword}</Text>
         </View>
         {/*Button for submitting the info*/}
         {/*onPress() calls the submitClick() function in the VisibleRideRequest class*/}
@@ -36,7 +37,11 @@ class DriverConfirmation extends Component {
         onPress = {() => this.props.onConfirmClick(this.props.name, this.props.phoneNumber, this.props.startTime, this.props.endTime, this.props.maxRiders, this.props.descr, this.props.org, this.props.eventCode, this.props.eventPassword)}>
           <Text> Confirm </Text>
         </TouchableHighlight>
-        <Text>Thank you and please drive safely :)</Text>
+        <View>
+          <Text style={styles.footer}>Thank you and please drive safely :)</Text>
+          <Text></Text>
+          <Text></Text>
+        </View>
       </View>
     );
   }

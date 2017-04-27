@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import DriverConfirmation from './DriverConfirmation'
 import Reactotron from 'reactotron-react-native'
 import {Actions} from 'react-native-router-flux'
-import {requestRide} from '../../actions'
+import {addDriver} from '../../actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
